@@ -4,10 +4,10 @@ public class GameManager : MonoBehaviour
 {
     #region Variables
 
+    [Header("GamePlay")]
     [SerializeField] private Ball _ball;
-    
-    
-    enum GameState
+
+    private enum GameState
     {
         Starting,
         Playing
@@ -16,7 +16,8 @@ public class GameManager : MonoBehaviour
     private GameState _currentState = GameState.Starting;
 
     #endregion
-    
+
+
     #region Unity lifecycle
 
     private void Update()
@@ -27,7 +28,7 @@ public class GameManager : MonoBehaviour
         }
 
         _ball.MoveWithPad();
-        
+
         if (Input.GetMouseButtonDown(0))
         {
             StartBall();
