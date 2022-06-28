@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 
 public class GameScreen : MonoBehaviour
@@ -7,27 +8,23 @@ public class GameScreen : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI _scoreLabel;
 
-    private int _score;
-
     #endregion
 
 
-    #region Public methods
+    #region Unity lifecycle
 
-    public void IncrementScore(int score)
+    private void Start()
     {
-        _score += score;
-        SetScoreLabelText();
+        ScoreManager.Instance.SetListener(SetScoreLabelText);
     }
 
     #endregion
 
+    #region Public methods
 
-    #region Private methods
-
-    private void SetScoreLabelText()
+    public void SetScoreLabelText(int score)
     {
-        _scoreLabel.text = _score.ToString();
+        _scoreLabel.text = score.ToString();
     }
 
     #endregion

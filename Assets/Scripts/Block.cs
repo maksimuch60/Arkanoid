@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 public class Block : MonoBehaviour
 {
@@ -47,6 +48,7 @@ public class Block : MonoBehaviour
     {
         if (_blockHP < 1)
         {
+            ScoreManager.Instance.IncrementScore(_blockScore);
             Destroy(gameObject);
         }
     }

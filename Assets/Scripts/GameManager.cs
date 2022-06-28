@@ -4,7 +4,6 @@ public class GameManager : MonoBehaviour
 {
     #region Variables
 
-    [Header("GamePlay")]
     [SerializeField] private Ball _ball;
 
     private enum GameState
