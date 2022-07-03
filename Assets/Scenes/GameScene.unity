@@ -5558,7 +5558,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody2D: {fileID: 2107391625}
   _pad: {fileID: 1716622013}
-  speed: 8
+  _speed: 8
+  _xMin: -1
+  _xMax: 1
+  _yMin: 0.25
+  _yMax: 1
 --- !u!1 &2123348388
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,7 +15,12 @@ public class GameScreen : MonoBehaviour
 
     private void Start()
     {
-        ScoreManager.Instance.SetListener(SetScoreLabelText);
+        ScoreManager.Instance.OnScoreChanged += SetScoreLabelText;
+    }
+
+    private void OnDestroy()
+    {
+        ScoreManager.Instance.OnScoreChanged -= SetScoreLabelText;
     }
 
     #endregion

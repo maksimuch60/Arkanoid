@@ -20,7 +20,7 @@ public class Block : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        DecrementHP();
+        DecrementHp();
         CheckDestruction();
         ChangeSprite();
     }
@@ -32,25 +32,25 @@ public class Block : MonoBehaviour
 
     private void ChangeSprite()
     {
+        if (_blockHP <= 0)
+            return;
+        
         int index = _stateSprites.Length - _blockHP;
-        if (_blockHP > 0)
-        {
-            _spriteRenderer.sprite = _stateSprites[index];
-        }
+        _spriteRenderer.sprite = _stateSprites[index];
     }
 
-    private void DecrementHP()
+    private void DecrementHp()
     {
         _blockHP--;
     }
 
     private void CheckDestruction()
     {
-        if (_blockHP < 1)
-        {
-            ScoreManager.Instance.IncrementScore(_blockScore);
-            Destroy(gameObject);
-        }
+        if (_blockHP >= 1)
+            return;
+        
+        ScoreManager.Instance.IncrementScore(_blockScore);
+        Destroy(gameObject);
     }
 
     #endregion

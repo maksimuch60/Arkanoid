@@ -2,15 +2,20 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    #region Variables
-
-    [SerializeField] private Ball _ball;
+    #region Local data
 
     private enum GameState
     {
         Starting,
         Playing
     }
+
+    #endregion
+
+
+    #region Variables
+
+    [SerializeField] private Ball _ball;
 
     private GameState _currentState = GameState.Starting;
 
