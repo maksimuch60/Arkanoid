@@ -11,7 +11,7 @@ public class ScoreManager : SingletonMonoBehavior<ScoreManager>
 
     #region Events
 
-    public event Action<int> OnScoreChanged; 
+    public event Action<int> OnScoreChanged;
 
     #endregion
 
@@ -22,6 +22,11 @@ public class ScoreManager : SingletonMonoBehavior<ScoreManager>
     {
         _score += score;
         OnScoreChanged?.Invoke(_score);
+    }
+
+    public void ResetScore()
+    {
+        _score = 0;
     }
 
     #endregion
