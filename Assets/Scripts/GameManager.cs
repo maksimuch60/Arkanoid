@@ -24,6 +24,16 @@ public class GameManager : MonoBehaviour
 
     #region Unity lifecycle
 
+    private void Start()
+    {
+        LevelManager.Instance.OnAllBlocksDestroyed += PerformWin;
+    }
+
+    private void OnDestroy()
+    {
+        LevelManager.Instance.OnAllBlocksDestroyed -= PerformWin;
+    }
+
     private void Update()
     {
         if (_currentState == GameState.Playing)
@@ -43,6 +53,11 @@ public class GameManager : MonoBehaviour
 
 
     #region Private methods
+
+    private void PerformWin()
+    {
+        Debug.Log("Win");
+    }
 
     private void StartBall()
     {

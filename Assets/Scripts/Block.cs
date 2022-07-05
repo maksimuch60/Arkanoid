@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 
 public class Block : MonoBehaviour
@@ -16,13 +17,31 @@ public class Block : MonoBehaviour
     #endregion
 
 
+    #region Events
+
+    public static event Action OnDestroyed;
+    public static event Action OnCreated;
+
+    #endregion
+
+
     #region Unity lifecycle
+
+    private void Start()
+    {
+        OnCreated?.Invoke();
+    }
 
     private void OnCollisionEnter2D(Collision2D col)
     {
         DecrementHp();
         CheckDestruction();
         ChangeSprite();
+    }
+
+    private void OnDestroy()
+    {
+        OnDestroyed?.Invoke();
     }
 
     #endregion
