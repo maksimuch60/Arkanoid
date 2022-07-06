@@ -2,9 +2,9 @@
 
 public class ScoreManager : SingletonMonoBehavior<ScoreManager>
 {
-    #region Variables
+    #region Properties
 
-    private int _score;
+    public int Score { get; private set; }
 
     #endregion
 
@@ -20,13 +20,13 @@ public class ScoreManager : SingletonMonoBehavior<ScoreManager>
 
     public void IncrementScore(int score)
     {
-        _score += score;
-        OnScoreChanged?.Invoke(_score);
+        Score += score;
+        OnScoreChanged?.Invoke(Score);
     }
 
     public void ResetScore()
     {
-        _score = 0;
+        Score = 0;
     }
 
     #endregion

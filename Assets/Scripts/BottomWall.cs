@@ -6,8 +6,10 @@ public class BottomWall : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        ScoreManager.Instance.ResetScore();
-        SceneLoader.Instance.ReloadScene();
+        if (col.gameObject.TryGetComponent<Ball>(out Ball ball))
+        {
+            ball.OnBallFall();
+        }
     }
 
     #endregion

@@ -10,6 +10,7 @@ public class Ball : MonoBehaviour
     [SerializeField] private Pad _pad;
 
     [SerializeField] private float _speed;
+    [SerializeField] private float _offset;
 
     [Header("Random range")]
     [Range(-1.0f, 1.0f)]
@@ -23,6 +24,12 @@ public class Ball : MonoBehaviour
 
     #endregion
 
+
+    #region Events
+
+    public event Action OnBallFell;
+
+    #endregion
 
     #region Unity lifecycle
 
@@ -47,7 +54,13 @@ public class Ball : MonoBehaviour
         Vector3 padPosition = _pad.transform.position;
         Vector3 currentPosition = transform.position;
         currentPosition.x = padPosition.x;
+        currentPosition.y = padPosition.y + _offset;
         transform.position = currentPosition;
+    }
+
+    public void OnBallFall()
+    {
+        OnBallFell?.Invoke();
     }
 
     #endregion

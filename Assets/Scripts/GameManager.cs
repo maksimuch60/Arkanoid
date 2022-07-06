@@ -7,7 +7,8 @@ public class GameManager : MonoBehaviour
     private enum GameState
     {
         Starting,
-        Playing
+        Playing,
+        Ending
     }
 
     #endregion
@@ -15,7 +16,12 @@ public class GameManager : MonoBehaviour
 
     #region Variables
 
+    [SerializeField] private GameObject _gameScreen;
+    [SerializeField] private GameObject _gameOverScreen;
+    
+    
     [SerializeField] private Ball _ball;
+    [SerializeField] private int _lives;
 
     private GameState _currentState = GameState.Starting;
 
@@ -25,18 +31,21 @@ public class GameManager : MonoBehaviour
     #region Unity lifecycle
 
     private void Start()
-    {
+    {   
+        _gameScreen.SetActive(true);
         LevelManager.Instance.OnAllBlocksDestroyed += PerformWin;
+        _ball.OnBallFell += DecrementLives;
     }
 
     private void OnDestroy()
     {
         LevelManager.Instance.OnAllBlocksDestroyed -= PerformWin;
+        _ball.OnBallFell -= DecrementLives;
     }
 
     private void Update()
     {
-        if (_currentState == GameState.Playing)
+        if (_currentState != GameState.Starting)
         {
             return;
         }
@@ -53,6 +62,18 @@ public class GameManager : MonoBehaviour
 
 
     #region Private methods
+
+    private void DecrementLives()
+    {
+        _lives--;
+        _currentState = _lives > 0 ? GameState.Starting : GameState.Ending;
+        if (_currentState == GameState.Ending)
+        {
+            _gameScreen.SetActive(false);
+            _gameOverScreen.SetActive(true);
+            
+        }
+    }
 
     private void PerformWin()
     {
