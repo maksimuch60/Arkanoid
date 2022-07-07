@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -24,7 +25,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _lives;
 
     private GameState _currentState = GameState.Starting;
-
+    private GameScreen _gameScreenComponent;
     #endregion
 
 
@@ -32,6 +33,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {   
+        _gameScreenComponent = _gameScreen.GetComponentInChildren<GameScreen>();
+        _gameScreenComponent.SetLivesLabelText(_lives);
         _gameScreen.SetActive(true);
         LevelManager.Instance.OnAllBlocksDestroyed += PerformWin;
         _ball.OnBallFell += DecrementLives;
@@ -73,6 +76,7 @@ public class GameManager : MonoBehaviour
             _gameOverScreen.SetActive(true);
             
         }
+        _gameScreenComponent.SetLivesLabelText(_lives);
     }
 
     private void PerformWin()

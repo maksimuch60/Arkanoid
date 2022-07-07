@@ -11,7 +11,7 @@ public class Block : MonoBehaviour
     [SerializeField] private int _blockScore;
 
     [Header("Components")]
-    [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] protected SpriteRenderer _spriteRenderer;
     [SerializeField] private Sprite[] _stateSprites;
 
     #endregion
@@ -32,7 +32,7 @@ public class Block : MonoBehaviour
         OnCreated?.Invoke();
     }
 
-    private void OnCollisionEnter2D(Collision2D col)
+    protected virtual void OnCollisionEnter2D(Collision2D col)
     {
         DecrementHp();
         CheckDestruction();

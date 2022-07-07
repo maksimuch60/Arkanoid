@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 
 public class GameScreen : MonoBehaviour
@@ -6,6 +7,7 @@ public class GameScreen : MonoBehaviour
     #region Variables
 
     [SerializeField] private TextMeshProUGUI _scoreLabel;
+    [SerializeField] private TextMeshProUGUI _livesLabel;
 
     #endregion
 
@@ -24,11 +26,21 @@ public class GameScreen : MonoBehaviour
 
     #endregion
 
-    #region Public methods
+    #region Private methods
 
-    public void SetScoreLabelText(int score)
+    private void SetScoreLabelText(int score)
     {
         _scoreLabel.text = score.ToString();
+    }
+
+    public void SetLivesLabelText(int lives)
+    {
+        string text = String.Empty;
+        for (int i = 0; i < lives; i++)
+        {
+            text += "<sprite=\"life\" index=0>";
+        }
+        _livesLabel.text = text;
     }
 
     #endregion
