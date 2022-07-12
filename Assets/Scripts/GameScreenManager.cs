@@ -1,15 +1,14 @@
-﻿using System;
+﻿using System.Linq;
 using UnityEngine;
 
 public class GameScreenManager : MonoBehaviour
 {
     #region Variables
 
-    [SerializeField] private GameObject _gameScreen;
-    [SerializeField] private GameObject _gameOverScreen;
-    [SerializeField] private GameObject _pauseScreen;
+    [SerializeField] private GameObject[] _screens;
 
-    private GameObject[] _windows;
+    private GameObject _currentScreen;
+    private GameObject _previousScreen;
 
     #endregion
 
@@ -18,7 +17,9 @@ public class GameScreenManager : MonoBehaviour
 
     private void Awake()
     {
-        _windows = new[] {_gameScreen, _gameOverScreen, _pauseScreen};
+        _previousScreen = null;
+        _currentScreen = _screens.First();
+        _currentScreen.SetActive(true);
     }
 
     #endregion
@@ -26,9 +27,17 @@ public class GameScreenManager : MonoBehaviour
 
     #region Public methods
 
-    public void ChangeWindow()
+    public void ChangeScreen(GameObject nextScreen)
     {
-        
+        _currentScreen.SetActive(false);
+        _previousScreen = _currentScreen;
+        _currentScreen = nextScreen;
+        _currentScreen.SetActive(true);
+    }
+
+    public GameObject GetPreviousScreen()
+    {
+        return _previousScreen;
     }
 
     #endregion

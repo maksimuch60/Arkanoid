@@ -2,6 +2,14 @@ using UnityEngine;
 
 public class PauseManager : SingletonMonoBehavior<PauseManager>
 {
+    #region Variables
+
+    [SerializeField] private GameScreenManager _gameScreenManager;
+    [SerializeField] private GameObject _pauseScreen;
+
+    #endregion
+
+
     #region Properties
 
     public bool IsPaused { get; private set; }
@@ -24,8 +32,9 @@ public class PauseManager : SingletonMonoBehavior<PauseManager>
 
     #region Private methods
 
-    private void TogglePause()
+    public void TogglePause()
     {
+        _gameScreenManager.ChangeScreen(!IsPaused ? _pauseScreen : _gameScreenManager.GetPreviousScreen());
         IsPaused = !IsPaused;
         Time.timeScale = IsPaused ? 0 : 1;
     }

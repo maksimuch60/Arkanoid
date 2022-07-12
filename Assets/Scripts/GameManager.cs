@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _gameScreen;
     [SerializeField] private GameObject _gameOverScreen;
     
+    [SerializeField] private GameScreenManager _gameScreenManager;
+    
     
     [SerializeField] private Ball _ball;
     [SerializeField] private int _lives;
@@ -35,7 +37,7 @@ public class GameManager : MonoBehaviour
     {   
         _gameScreenComponent = _gameScreen.GetComponentInChildren<GameScreen>();
         _gameScreenComponent.SetLivesLabelText(_lives);
-        _gameScreen.SetActive(true);
+        _gameScreenManager.ChangeScreen(_gameScreen);
         LevelManager.Instance.OnAllBlocksDestroyed += PerformWin;
         _ball.OnBallFell += DecrementLives;
     }
@@ -72,16 +74,22 @@ public class GameManager : MonoBehaviour
         _currentState = _lives > 0 ? GameState.Starting : GameState.Ending;
         if (_currentState == GameState.Ending)
         {
-            _gameScreen.SetActive(false);
-            _gameOverScreen.SetActive(true);
-            
+            SetupEndGame();
+            _gameScreenManager.ChangeScreen(_gameOverScreen);
         }
         _gameScreenComponent.SetLivesLabelText(_lives);
     }
 
     private void PerformWin()
     {
-        Debug.Log("Win");
+        SetupEndGame();
+        _gameScreenManager.ChangeScreen(_gameOverScreen);
+    }
+
+    private static void SetupEndGame()
+    {
+        PauseManager.Instance.TogglePause();
+        PauseManager.Instance.enabled = false;
     }
 
     private void StartBall()
