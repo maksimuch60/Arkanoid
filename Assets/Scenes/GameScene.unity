@@ -2224,8 +2224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e637be2e2859f34f927a47fb91e5129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameScreen: {fileID: 862082720}
-  _gameOverScreen: {fileID: 1742686390}
+  _gameScreen: {fileID: 862082722}
   _gameScreenManager: {fileID: 1197318377}
   _ball: {fileID: 2107391629}
   _lives: 3
@@ -6149,7 +6148,7 @@ GameObject:
   - component: {fileID: 1742686391}
   - component: {fileID: 1742686392}
   m_Layer: 5
-  m_Name: GameOverScreen
+  m_Name: EndGameScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6973,7 +6972,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameScreenManager: {fileID: 1197318377}
-  _pauseScreen: {fileID: 1818795447}
 --- !u!4 &2113607652
 Transform:
   m_ObjectHideFlags: 0

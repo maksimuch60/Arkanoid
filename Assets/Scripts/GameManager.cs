@@ -17,9 +17,7 @@ public class GameManager : MonoBehaviour
 
     #region Variables
 
-    [SerializeField] private GameObject _gameScreen;
-    [SerializeField] private GameObject _gameOverScreen;
-    
+    [SerializeField] private GameScreen _gameScreen;
     [SerializeField] private GameScreenManager _gameScreenManager;
     
     
@@ -27,7 +25,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _lives;
 
     private GameState _currentState = GameState.Starting;
-    private GameScreen _gameScreenComponent;
+    
     #endregion
 
 
@@ -35,9 +33,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {   
-        _gameScreenComponent = _gameScreen.GetComponentInChildren<GameScreen>();
-        _gameScreenComponent.SetLivesLabelText(_lives);
-        _gameScreenManager.ChangeScreen(_gameScreen);
+        _gameScreen.SetLivesLabelText(_lives);
+        _gameScreenManager.ChangeScreen(Screens.GameScreen);
         LevelManager.Instance.OnAllBlocksDestroyed += PerformWin;
         _ball.OnBallFell += DecrementLives;
     }
@@ -74,19 +71,19 @@ public class GameManager : MonoBehaviour
         _currentState = _lives > 0 ? GameState.Starting : GameState.Ending;
         if (_currentState == GameState.Ending)
         {
-            SetupEndGame();
-            _gameScreenManager.ChangeScreen(_gameOverScreen);
+            SetLastPause();
+            _gameScreenManager.ChangeScreen(Screens.EndGameScreen);
         }
-        _gameScreenComponent.SetLivesLabelText(_lives);
+        _gameScreen.SetLivesLabelText(_lives);
     }
 
     private void PerformWin()
     {
-        SetupEndGame();
-        _gameScreenManager.ChangeScreen(_gameOverScreen);
+        SetLastPause();
+        _gameScreenManager.ChangeScreen(Screens.EndGameScreen);
     }
 
-    private static void SetupEndGame()
+    private static void SetLastPause()
     {
         PauseManager.Instance.TogglePause();
         PauseManager.Instance.enabled = false;

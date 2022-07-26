@@ -27,17 +27,24 @@ public class GameScreenManager : MonoBehaviour
 
     #region Public methods
 
-    public void ChangeScreen(GameObject nextScreen)
+    public void ChangeScreen(string nextScreenName)
     {
         _currentScreen.SetActive(false);
         _previousScreen = _currentScreen;
-        _currentScreen = nextScreen;
+        foreach (GameObject screen in _screens)
+        {
+            if (screen.name.Equals(nextScreenName))
+            {
+                _currentScreen = screen;
+                break;
+            }
+        }
         _currentScreen.SetActive(true);
     }
 
-    public GameObject GetPreviousScreen()
+    public string GetPreviousScreenName()
     {
-        return _previousScreen;
+        return _previousScreen.name;
     }
 
     #endregion
