@@ -22,16 +22,33 @@ public class Ball : MonoBehaviour
     [Range(0.0f, 1.0f)]
     [SerializeField] private float _yMax;
 
+    private LastBallChecker _lastBallChecker;
+
     #endregion
 
 
     #region Events
 
     public event Action OnBallFell;
+    public event Action OnBallCreated;
 
     #endregion
 
+
     #region Unity lifecycle
+
+    private void OnEnable()
+    {
+        _lastBallChecker = FindObjectOfType<LastBallChecker>();
+        OnBallCreated += _lastBallChecker.BallCreate;
+        OnBallFell += _lastBallChecker.BallDestroy;
+    }
+
+    private void OnDestroy()
+    {
+        OnBallCreated -= _lastBallChecker.BallCreate;
+        OnBallFell -= _lastBallChecker.BallDestroy;
+    }
 
     private void OnDrawGizmos()
     {
@@ -46,10 +63,16 @@ public class Ball : MonoBehaviour
 
     public void StartMove()
     {
+        OnBallCreated?.Invoke();
         _rigidbody2D.velocity = GetRandomDirection();
     }
 
-    public void MoveWithPad()
+    public void ResetBall()
+    {
+        MoveWithPad();
+    }
+
+    private void MoveWithPad()
     {
         Vector3 padPosition = _pad.transform.position;
         Vector3 currentPosition = transform.position;

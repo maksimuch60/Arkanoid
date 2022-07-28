@@ -16,7 +16,12 @@ public class InvisibleBlock : Block
         _spriteRenderer.enabled = false;
     }
 
-    protected sealed override void OnCollisionEnter2D(Collision2D col)
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        ApplyDamage();
+    }
+
+    protected override void ApplyDamage()
     {
         if (!_isVisible)
         {
@@ -25,7 +30,7 @@ public class InvisibleBlock : Block
         }
         else
         {
-            base.OnCollisionEnter2D(col);
+            base.ApplyDamage();
         }
     }
 

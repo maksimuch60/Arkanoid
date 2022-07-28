@@ -32,7 +32,12 @@ public class Block : MonoBehaviour
         OnCreated?.Invoke();
     }
 
-    protected virtual void OnCollisionEnter2D(Collision2D col)
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        ApplyDamage();
+    }
+
+    protected virtual void ApplyDamage()
     {
         DecrementHp();
         CheckDestruction();

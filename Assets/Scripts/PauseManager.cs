@@ -6,6 +6,8 @@ public class PauseManager : SingletonMonoBehavior<PauseManager>
 
     [SerializeField] private GameScreenManager _gameScreenManager;
 
+    private bool _ultimatePause;
+
     #endregion
 
 
@@ -20,9 +22,8 @@ public class PauseManager : SingletonMonoBehavior<PauseManager>
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !_ultimatePause)
         {
-            TogglePauseScreen();
             TogglePause();
         }
     }
@@ -32,15 +33,34 @@ public class PauseManager : SingletonMonoBehavior<PauseManager>
 
     #region Private methods
 
-    public void TogglePause()
+    private void TogglePause()
     {
+        _gameScreenManager.ChangeScreen(IsPaused ? _gameScreenManager.GetPreviousScreenName() : Screens.PauseScreen);
         IsPaused = !IsPaused;
-        Time.timeScale = IsPaused ? 0 : 1;
+        if (IsPaused)
+        {
+            StopGame();
+        }
+        else
+        {
+            ResumeGame();
+        }
+
+        _ultimatePause = false;
     }
 
-    private void TogglePauseScreen()
+    public void StopGame()
     {
-        _gameScreenManager.ChangeScreen(!IsPaused ? Screens.PauseScreen : _gameScreenManager.GetPreviousScreenName());
+        IsPaused = true;
+        Time.timeScale = 0;
+        _ultimatePause = true;
+    }
+
+    public void ResumeGame()
+    {
+        IsPaused = false;
+        Time.timeScale = 1;
+        _ultimatePause = false;
     }
 
     #endregion
