@@ -1,11 +1,12 @@
 ﻿using System;
-using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Block : MonoBehaviour
 {
     #region Variables
 
+    [Header("Block")]
     [Header("Values")]
     [SerializeField] private int _blockHP;
     [SerializeField] private int _blockScore;
@@ -13,6 +14,11 @@ public class Block : MonoBehaviour
     [Header("Components")]
     [SerializeField] protected SpriteRenderer _spriteRenderer;
     [SerializeField] private Sprite[] _stateSprites;
+
+    [Header("PickUp")]
+    [SerializeField] private GameObject _pickUpPrefab;
+    [Range(0f, 1f)]
+    [SerializeField] private float _pickUpSpawnChance;
 
     #endregion
 
@@ -58,7 +64,7 @@ public class Block : MonoBehaviour
     {
         if (_blockHP <= 0)
             return;
-        
+
         int index = _stateSprites.Length - _blockHP;
         _spriteRenderer.sprite = _stateSprites[index];
     }
@@ -72,9 +78,24 @@ public class Block : MonoBehaviour
     {
         if (_blockHP >= 1)
             return;
-        
-        ScoreManager.Instance.IncrementScore(_blockScore);
+
+        ScoreManager.Instance.ChangeScore(_blockScore);
+        SpawnPickUp();
         Destroy(gameObject);
+    }
+
+    private void SpawnPickUp()
+    {
+        if (_pickUpPrefab == null)
+        {
+            return;
+        }
+        
+        float random = Random.Range(0f, 1f);
+        if (random <= _pickUpSpawnChance)
+        {
+            Instantiate(_pickUpPrefab, transform.position, Quaternion.identity);
+        }
     }
 
     #endregion

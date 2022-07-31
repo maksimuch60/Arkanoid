@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class LastBallChecker : MonoBehaviour
 {
-    #region Variables
+    #region Properties
 
-    private int _ballCount;
+    public int BallCount { get; private set; }
 
     #endregion
 
 
-    #region Eventa
+    #region Events
 
     public event Action OnAllBallsDestroyed;
 
@@ -21,13 +21,13 @@ public class LastBallChecker : MonoBehaviour
 
     public void BallCreate()
     {
-        _ballCount++;
+        BallCount++;
     }
 
     public void BallDestroy()
     {
-        _ballCount--;
-        if (_ballCount == 0)
+        BallCount--;
+        if (BallCount == 0)
         {
             OnAllBallsDestroyed?.Invoke();
         }

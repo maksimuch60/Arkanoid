@@ -12,7 +12,7 @@ public class Ball : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _offset;
 
-    [Header("Random range")]
+    [Header("Random direction range")]
     [Range(-1.0f, 1.0f)]
     [SerializeField] private float _xMin;
     [Range(-1.0f, 1.0f)]
@@ -21,8 +21,13 @@ public class Ball : MonoBehaviour
     [SerializeField] private float _yMin;
     [Range(0.0f, 1.0f)]
     [SerializeField] private float _yMax;
-
+    
+    [Header("Ball min/max speed")]
+    [SerializeField] private float _maxSpeed;
+    [SerializeField] private float _minSpeed;
+    
     private LastBallChecker _lastBallChecker;
+    private bool _isStarted;
 
     #endregion
 
@@ -50,6 +55,29 @@ public class Ball : MonoBehaviour
         OnBallFell -= _lastBallChecker.BallDestroy;
     }
 
+    private void Start()
+    {
+        if (GameManager.Instance.NeedAutoPlay)
+        {
+            StartBall();
+        }
+    }
+
+    private void Update()
+    {
+        if (_isStarted)
+        {
+            return;
+        }
+        
+        ResetBall();
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            StartBall();
+        }
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
@@ -69,8 +97,43 @@ public class Ball : MonoBehaviour
 
     public void ResetBall()
     {
+        _isStarted = false;
         MoveWithPad();
     }
+
+    public void OnBallFall()
+    {
+        OnBallFell?.Invoke();
+        if (_lastBallChecker.BallCount == 0)
+        {
+            _isStarted = false;
+        }
+    }
+
+    public void ChangeSpeed(float speedMultiplier)
+    {
+        Vector2 velocity = _rigidbody2D.velocity;
+        float velocityMagnitude = velocity.magnitude;
+        velocityMagnitude *= speedMultiplier;
+
+        if (velocityMagnitude < _minSpeed)
+        {
+            velocityMagnitude = _minSpeed;
+        }
+
+        if (velocityMagnitude > _maxSpeed)
+        {
+            velocityMagnitude = _maxSpeed;
+        }
+
+        _rigidbody2D.velocity = velocity.normalized * velocityMagnitude;
+
+    }
+
+    #endregion
+
+
+    #region Private methods
 
     private void MoveWithPad()
     {
@@ -81,16 +144,6 @@ public class Ball : MonoBehaviour
         transform.position = currentPosition;
     }
 
-    public void OnBallFall()
-    {
-        OnBallFell?.Invoke();
-    }
-
-    #endregion
-
-
-    #region Private methods
-
     private Vector2 GetRandomDirection()
     {
         Vector2 startDirection = new Vector2(Random.Range(_xMin, _xMax), Random.Range(_yMin, _yMax));
@@ -98,6 +151,12 @@ public class Ball : MonoBehaviour
         startDirection *= _speed;
 
         return startDirection;
+    }
+
+    private void StartBall()
+    {
+        _isStarted = true;
+        StartMove();
     }
 
     #endregion

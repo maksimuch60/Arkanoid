@@ -29,8 +29,28 @@ public class GameScreenManager : MonoBehaviour
 
     public void ChangeScreen(string nextScreenName)
     {
+        if (_currentScreen == null)
+        {
+            return;
+        }
+
         _currentScreen.SetActive(false);
         _previousScreen = _currentScreen;
+        SetCurrentScreen(nextScreenName);
+    }
+
+    public string GetPreviousScreenName()
+    {
+        return _previousScreen.name;
+    }
+
+    #endregion
+
+
+    #region Private methods
+
+    private void SetCurrentScreen(string nextScreenName)
+    {
         foreach (GameObject screen in _screens)
         {
             if (screen.name.Equals(nextScreenName))
@@ -39,12 +59,8 @@ public class GameScreenManager : MonoBehaviour
                 break;
             }
         }
-        _currentScreen.SetActive(true);
-    }
 
-    public string GetPreviousScreenName()
-    {
-        return _previousScreen.name;
+        _currentScreen.SetActive(true);
     }
 
     #endregion

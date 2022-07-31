@@ -174,6 +174,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5199989825310278471, guid: 79880c62cf554f648bdd32b2e5831e43, type: 3}
+      propertyPath: _pickUpPrefab
+      value: 
+      objectReference: {fileID: 7423573488319171070, guid: 406fba02639eae648bcd83cc5b5ccfab, type: 3}
+    - target: {fileID: 5199989825310278471, guid: 79880c62cf554f648bdd32b2e5831e43, type: 3}
+      propertyPath: _pickUpSpawnChance
+      value: 0.653
+      objectReference: {fileID: 0}
     - target: {fileID: 7342235792228016217, guid: 79880c62cf554f648bdd32b2e5831e43, type: 3}
       propertyPath: m_Name
       value: StoneCircle (2)
@@ -316,6 +324,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1023143755}
     m_Modifications:
+    - target: {fileID: -2937939735002273156, guid: db79ec3de6211ed4daac01decc850163, type: 3}
+      propertyPath: _pickUpPrefab
+      value: 
+      objectReference: {fileID: 864451792643260388, guid: bbd8dcc869b306f40838ea357023cdf9, type: 3}
     - target: {fileID: 5892299802819358981, guid: db79ec3de6211ed4daac01decc850163, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -491,6 +503,7 @@ GameObject:
   - component: {fileID: 163121871}
   - component: {fileID: 163121873}
   - component: {fileID: 163121872}
+  - component: {fileID: 163121874}
   m_Layer: 5
   m_Name: LivesLabel
   m_TagString: Untagged
@@ -615,6 +628,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 163121870}
   m_CullTransparentMesh: 1
+--- !u!114 &163121874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 163121870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 0
 --- !u!4 &163764988 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1577570072563057329, guid: 79880c62cf554f648bdd32b2e5831e43, type: 3}
@@ -630,7 +657,7 @@ GameObject:
   m_Component:
   - component: {fileID: 183283909}
   - component: {fileID: 183283910}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -752,6 +779,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1023143755}
     m_Modifications:
+    - target: {fileID: -2937939735002273156, guid: db79ec3de6211ed4daac01decc850163, type: 3}
+      propertyPath: _pickUpPrefab
+      value: 
+      objectReference: {fileID: 864451792643260388, guid: bbd8dcc869b306f40838ea357023cdf9, type: 3}
     - target: {fileID: 5892299802819358981, guid: db79ec3de6211ed4daac01decc850163, type: 3}
       propertyPath: m_RootOrder
       value: 15
@@ -915,6 +946,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5199989825310278471, guid: 79880c62cf554f648bdd32b2e5831e43, type: 3}
+      propertyPath: _pickUpPrefab
+      value: 
+      objectReference: {fileID: 7423573488319171070, guid: 406fba02639eae648bcd83cc5b5ccfab, type: 3}
+    - target: {fileID: 5199989825310278471, guid: 79880c62cf554f648bdd32b2e5831e43, type: 3}
+      propertyPath: _pickUpSpawnChance
+      value: 0.653
+      objectReference: {fileID: 0}
     - target: {fileID: 7342235792228016217, guid: 79880c62cf554f648bdd32b2e5831e43, type: 3}
       propertyPath: m_Name
       value: StoneCircle (3)
@@ -958,6 +997,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1023143755}
     m_Modifications:
+    - target: {fileID: -2937939735002273156, guid: db79ec3de6211ed4daac01decc850163, type: 3}
+      propertyPath: _pickUpPrefab
+      value: 
+      objectReference: {fileID: 864451792643260388, guid: bbd8dcc869b306f40838ea357023cdf9, type: 3}
     - target: {fileID: 5892299802819358981, guid: db79ec3de6211ed4daac01decc850163, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1510,6 +1553,7 @@ GameObject:
   - component: {fileID: 518033018}
   - component: {fileID: 518033017}
   - component: {fileID: 518033016}
+  - component: {fileID: 518033019}
   m_Layer: 5
   m_Name: ScoreLabel
   m_TagString: Untagged
@@ -1634,6 +1678,20 @@ RectTransform:
   m_AnchoredPosition: {x: 860, y: 440}
   m_SizeDelta: {x: 250, y: 100}
   m_Pivot: {x: 1, y: 1}
+--- !u!114 &518033019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518033015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1790,6 +1848,14 @@ PrefabInstance:
     - target: {fileID: 1029052638390653905, guid: 915889023dd19e740abae163025606d8, type: 3}
       propertyPath: m_Name
       value: InvisibleWoodBlock (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7906885354489434538, guid: 915889023dd19e740abae163025606d8, type: 3}
+      propertyPath: _pickUpPrefab
+      value: 
+      objectReference: {fileID: 864451792643260388, guid: bbd8dcc869b306f40838ea357023cdf9, type: 3}
+    - target: {fileID: 7906885354489434538, guid: 915889023dd19e740abae163025606d8, type: 3}
+      propertyPath: _pickUpSpawnChance
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8612356531031245201, guid: 915889023dd19e740abae163025606d8, type: 3}
       propertyPath: m_RootOrder
@@ -2227,7 +2293,7 @@ MonoBehaviour:
   _gameScreen: {fileID: 862082722}
   _gameScreenManager: {fileID: 1197318377}
   _lastBallChecker: {fileID: 923204198}
-  _ball: {fileID: 2107391629}
+  _needAutoPlay: 1
   _lives: 3
 --- !u!4 &684483499
 Transform:
@@ -2256,6 +2322,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1023143755}
     m_Modifications:
+    - target: {fileID: -2937939735002273156, guid: db79ec3de6211ed4daac01decc850163, type: 3}
+      propertyPath: _pickUpPrefab
+      value: 
+      objectReference: {fileID: 864451792643260388, guid: bbd8dcc869b306f40838ea357023cdf9, type: 3}
     - target: {fileID: 5892299802819358981, guid: db79ec3de6211ed4daac01decc850163, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -2318,6 +2388,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1023143755}
     m_Modifications:
+    - target: {fileID: -2937939735002273156, guid: db79ec3de6211ed4daac01decc850163, type: 3}
+      propertyPath: _pickUpPrefab
+      value: 
+      objectReference: {fileID: 864451792643260388, guid: bbd8dcc869b306f40838ea357023cdf9, type: 3}
     - target: {fileID: 5892299802819358981, guid: db79ec3de6211ed4daac01decc850163, type: 3}
       propertyPath: m_RootOrder
       value: 17
@@ -2383,7 +2457,7 @@ GameObject:
   m_Component:
   - component: {fileID: 793348820}
   - component: {fileID: 793348821}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3050,6 +3124,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1023143755}
     m_Modifications:
+    - target: {fileID: -2937939735002273156, guid: db79ec3de6211ed4daac01decc850163, type: 3}
+      propertyPath: _pickUpPrefab
+      value: 
+      objectReference: {fileID: 864451792643260388, guid: bbd8dcc869b306f40838ea357023cdf9, type: 3}
     - target: {fileID: 5892299802819358981, guid: db79ec3de6211ed4daac01decc850163, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -3485,6 +3563,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1023143755}
     m_Modifications:
+    - target: {fileID: -2937939735002273156, guid: db79ec3de6211ed4daac01decc850163, type: 3}
+      propertyPath: _pickUpPrefab
+      value: 
+      objectReference: {fileID: 864451792643260388, guid: bbd8dcc869b306f40838ea357023cdf9, type: 3}
     - target: {fileID: 5892299802819358981, guid: db79ec3de6211ed4daac01decc850163, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -3981,6 +4063,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: InvisibleWoodBlock (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 7906885354489434538, guid: 915889023dd19e740abae163025606d8, type: 3}
+      propertyPath: _pickUpPrefab
+      value: 
+      objectReference: {fileID: 864451792643260388, guid: bbd8dcc869b306f40838ea357023cdf9, type: 3}
+    - target: {fileID: 7906885354489434538, guid: 915889023dd19e740abae163025606d8, type: 3}
+      propertyPath: _pickUpSpawnChance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8612356531031245201, guid: 915889023dd19e740abae163025606d8, type: 3}
       propertyPath: m_RootOrder
       value: 35
@@ -4039,6 +4129,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1023143755}
     m_Modifications:
+    - target: {fileID: -7762887718947677469, guid: 39343b9e477d318488f7fe56b29d6951, type: 3}
+      propertyPath: _pickUpPrefab
+      value: 
+      objectReference: {fileID: 7423573488319171070, guid: 406fba02639eae648bcd83cc5b5ccfab, type: 3}
+    - target: {fileID: -7762887718947677469, guid: 39343b9e477d318488f7fe56b29d6951, type: 3}
+      propertyPath: _pickUpSpawnChance
+      value: 0.653
+      objectReference: {fileID: 0}
     - target: {fileID: 1093260402900935655, guid: 39343b9e477d318488f7fe56b29d6951, type: 3}
       propertyPath: m_RootOrder
       value: 20
@@ -4154,6 +4252,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1023143755}
     m_Modifications:
+    - target: {fileID: -2937939735002273156, guid: db79ec3de6211ed4daac01decc850163, type: 3}
+      propertyPath: _pickUpPrefab
+      value: 
+      objectReference: {fileID: 864451792643260388, guid: bbd8dcc869b306f40838ea357023cdf9, type: 3}
     - target: {fileID: 5892299802819358981, guid: db79ec3de6211ed4daac01decc850163, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -4396,6 +4498,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: InvisibleWoodBlock (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 7906885354489434538, guid: 915889023dd19e740abae163025606d8, type: 3}
+      propertyPath: _pickUpPrefab
+      value: 
+      objectReference: {fileID: 864451792643260388, guid: bbd8dcc869b306f40838ea357023cdf9, type: 3}
+    - target: {fileID: 7906885354489434538, guid: 915889023dd19e740abae163025606d8, type: 3}
+      propertyPath: _pickUpSpawnChance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8612356531031245201, guid: 915889023dd19e740abae163025606d8, type: 3}
       propertyPath: m_RootOrder
       value: 36
@@ -4511,6 +4621,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1023143755}
     m_Modifications:
+    - target: {fileID: -2937939735002273156, guid: db79ec3de6211ed4daac01decc850163, type: 3}
+      propertyPath: _pickUpPrefab
+      value: 
+      objectReference: {fileID: 864451792643260388, guid: bbd8dcc869b306f40838ea357023cdf9, type: 3}
     - target: {fileID: 5892299802819358981, guid: db79ec3de6211ed4daac01decc850163, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -4687,6 +4801,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1023143755}
     m_Modifications:
+    - target: {fileID: -2937939735002273156, guid: db79ec3de6211ed4daac01decc850163, type: 3}
+      propertyPath: _pickUpPrefab
+      value: 
+      objectReference: {fileID: 864451792643260388, guid: bbd8dcc869b306f40838ea357023cdf9, type: 3}
     - target: {fileID: 5892299802819358981, guid: db79ec3de6211ed4daac01decc850163, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -4744,6 +4862,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1023143755}
     m_Modifications:
+    - target: {fileID: -7762887718947677469, guid: 39343b9e477d318488f7fe56b29d6951, type: 3}
+      propertyPath: _pickUpPrefab
+      value: 
+      objectReference: {fileID: 7423573488319171070, guid: 406fba02639eae648bcd83cc5b5ccfab, type: 3}
+    - target: {fileID: -7762887718947677469, guid: 39343b9e477d318488f7fe56b29d6951, type: 3}
+      propertyPath: _pickUpSpawnChance
+      value: 0.653
+      objectReference: {fileID: 0}
     - target: {fileID: 1093260402900935655, guid: 39343b9e477d318488f7fe56b29d6951, type: 3}
       propertyPath: m_RootOrder
       value: 19
@@ -4809,6 +4935,14 @@ PrefabInstance:
     - target: {fileID: 1029052638390653905, guid: 915889023dd19e740abae163025606d8, type: 3}
       propertyPath: m_Name
       value: InvisibleWoodBlock (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7906885354489434538, guid: 915889023dd19e740abae163025606d8, type: 3}
+      propertyPath: _pickUpPrefab
+      value: 
+      objectReference: {fileID: 7423573488319171070, guid: 406fba02639eae648bcd83cc5b5ccfab, type: 3}
+    - target: {fileID: 7906885354489434538, guid: 915889023dd19e740abae163025606d8, type: 3}
+      propertyPath: _pickUpSpawnChance
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8612356531031245201, guid: 915889023dd19e740abae163025606d8, type: 3}
       propertyPath: m_RootOrder
@@ -4934,7 +5068,7 @@ GameObject:
   - component: {fileID: 1417720971}
   - component: {fileID: 1417720972}
   - component: {fileID: 1417720973}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5001,6 +5135,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1023143755}
     m_Modifications:
+    - target: {fileID: -7762887718947677469, guid: 39343b9e477d318488f7fe56b29d6951, type: 3}
+      propertyPath: _pickUpPrefab
+      value: 
+      objectReference: {fileID: 7423573488319171070, guid: 406fba02639eae648bcd83cc5b5ccfab, type: 3}
+    - target: {fileID: -7762887718947677469, guid: 39343b9e477d318488f7fe56b29d6951, type: 3}
+      propertyPath: _pickUpSpawnChance
+      value: 0.653
+      objectReference: {fileID: 0}
     - target: {fileID: 1093260402900935655, guid: 39343b9e477d318488f7fe56b29d6951, type: 3}
       propertyPath: m_RootOrder
       value: 22
@@ -5215,6 +5357,14 @@ PrefabInstance:
     - target: {fileID: 1029052638390653905, guid: 915889023dd19e740abae163025606d8, type: 3}
       propertyPath: m_Name
       value: InvisibleWoodBlock (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7906885354489434538, guid: 915889023dd19e740abae163025606d8, type: 3}
+      propertyPath: _pickUpPrefab
+      value: 
+      objectReference: {fileID: 7423573488319171070, guid: 406fba02639eae648bcd83cc5b5ccfab, type: 3}
+    - target: {fileID: 7906885354489434538, guid: 915889023dd19e740abae163025606d8, type: 3}
+      propertyPath: _pickUpSpawnChance
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8612356531031245201, guid: 915889023dd19e740abae163025606d8, type: 3}
       propertyPath: m_RootOrder
@@ -5749,6 +5899,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: InvisibleWoodBlock (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 7906885354489434538, guid: 915889023dd19e740abae163025606d8, type: 3}
+      propertyPath: _pickUpPrefab
+      value: 
+      objectReference: {fileID: 7423573488319171070, guid: 406fba02639eae648bcd83cc5b5ccfab, type: 3}
+    - target: {fileID: 7906885354489434538, guid: 915889023dd19e740abae163025606d8, type: 3}
+      propertyPath: _pickUpSpawnChance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8612356531031245201, guid: 915889023dd19e740abae163025606d8, type: 3}
       propertyPath: m_RootOrder
       value: 33
@@ -5802,6 +5960,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1023143755}
     m_Modifications:
+    - target: {fileID: -2937939735002273156, guid: db79ec3de6211ed4daac01decc850163, type: 3}
+      propertyPath: _pickUpPrefab
+      value: 
+      objectReference: {fileID: 864451792643260388, guid: bbd8dcc869b306f40838ea357023cdf9, type: 3}
     - target: {fileID: 5892299802819358981, guid: db79ec3de6211ed4daac01decc850163, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -5926,6 +6088,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1023143755}
     m_Modifications:
+    - target: {fileID: -7762887718947677469, guid: 39343b9e477d318488f7fe56b29d6951, type: 3}
+      propertyPath: _pickUpPrefab
+      value: 
+      objectReference: {fileID: 7423573488319171070, guid: 406fba02639eae648bcd83cc5b5ccfab, type: 3}
+    - target: {fileID: -7762887718947677469, guid: 39343b9e477d318488f7fe56b29d6951, type: 3}
+      propertyPath: _pickUpSpawnChance
+      value: 0.653
+      objectReference: {fileID: 0}
     - target: {fileID: 1093260402900935655, guid: 39343b9e477d318488f7fe56b29d6951, type: 3}
       propertyPath: m_RootOrder
       value: 18
@@ -6032,6 +6202,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5199989825310278471, guid: 79880c62cf554f648bdd32b2e5831e43, type: 3}
+      propertyPath: _pickUpPrefab
+      value: 
+      objectReference: {fileID: 7423573488319171070, guid: 406fba02639eae648bcd83cc5b5ccfab, type: 3}
+    - target: {fileID: 5199989825310278471, guid: 79880c62cf554f648bdd32b2e5831e43, type: 3}
+      propertyPath: _pickUpSpawnChance
+      value: 0.653
+      objectReference: {fileID: 0}
     - target: {fileID: 7342235792228016217, guid: 79880c62cf554f648bdd32b2e5831e43, type: 3}
       propertyPath: m_Name
       value: StoneCircle (1)
@@ -6065,9 +6243,9 @@ GameObject:
   - component: {fileID: 1716622010}
   - component: {fileID: 1716622012}
   - component: {fileID: 1716622013}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pad
-  m_TagString: Untagged
+  m_TagString: Pad
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6240,6 +6418,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1023143755}
     m_Modifications:
+    - target: {fileID: -2937939735002273156, guid: db79ec3de6211ed4daac01decc850163, type: 3}
+      propertyPath: _pickUpPrefab
+      value: 
+      objectReference: {fileID: 864451792643260388, guid: bbd8dcc869b306f40838ea357023cdf9, type: 3}
     - target: {fileID: 5892299802819358981, guid: db79ec3de6211ed4daac01decc850163, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -6297,6 +6479,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1023143755}
     m_Modifications:
+    - target: {fileID: -2937939735002273156, guid: db79ec3de6211ed4daac01decc850163, type: 3}
+      propertyPath: _pickUpPrefab
+      value: 
+      objectReference: {fileID: 864451792643260388, guid: bbd8dcc869b306f40838ea357023cdf9, type: 3}
     - target: {fileID: 5892299802819358981, guid: db79ec3de6211ed4daac01decc850163, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -6654,6 +6840,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1023143755}
     m_Modifications:
+    - target: {fileID: -2937939735002273156, guid: db79ec3de6211ed4daac01decc850163, type: 3}
+      propertyPath: _pickUpPrefab
+      value: 
+      objectReference: {fileID: 864451792643260388, guid: bbd8dcc869b306f40838ea357023cdf9, type: 3}
     - target: {fileID: 5892299802819358981, guid: db79ec3de6211ed4daac01decc850163, type: 3}
       propertyPath: m_RootOrder
       value: 14
@@ -6721,6 +6911,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1023143755}
     m_Modifications:
+    - target: {fileID: -7762887718947677469, guid: 39343b9e477d318488f7fe56b29d6951, type: 3}
+      propertyPath: _pickUpPrefab
+      value: 
+      objectReference: {fileID: 7423573488319171070, guid: 406fba02639eae648bcd83cc5b5ccfab, type: 3}
+    - target: {fileID: -7762887718947677469, guid: 39343b9e477d318488f7fe56b29d6951, type: 3}
+      propertyPath: _pickUpSpawnChance
+      value: 0.653
+      objectReference: {fileID: 0}
     - target: {fileID: 1093260402900935655, guid: 39343b9e477d318488f7fe56b29d6951, type: 3}
       propertyPath: m_RootOrder
       value: 21
@@ -6783,6 +6981,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1023143755}
     m_Modifications:
+    - target: {fileID: -2937939735002273156, guid: db79ec3de6211ed4daac01decc850163, type: 3}
+      propertyPath: _pickUpPrefab
+      value: 
+      objectReference: {fileID: 864451792643260388, guid: bbd8dcc869b306f40838ea357023cdf9, type: 3}
     - target: {fileID: 5892299802819358981, guid: db79ec3de6211ed4daac01decc850163, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -6856,9 +7058,9 @@ GameObject:
   - component: {fileID: 2107391626}
   - component: {fileID: 2107391625}
   - component: {fileID: 2107391628}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ball
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6987,6 +7189,8 @@ MonoBehaviour:
   _xMax: 1
   _yMin: 0.25
   _yMax: 1
+  _maxSpeed: 13
+  _minSpeed: 3
 --- !u!1 &2113607650
 GameObject:
   m_ObjectHideFlags: 0
@@ -7042,7 +7246,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2123348389}
   - component: {fileID: 2123348390}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7100,6 +7304,14 @@ PrefabInstance:
     - target: {fileID: 1029052638390653905, guid: 915889023dd19e740abae163025606d8, type: 3}
       propertyPath: m_Name
       value: InvisibleWoodBlock (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7906885354489434538, guid: 915889023dd19e740abae163025606d8, type: 3}
+      propertyPath: _pickUpPrefab
+      value: 
+      objectReference: {fileID: 7423573488319171070, guid: 406fba02639eae648bcd83cc5b5ccfab, type: 3}
+    - target: {fileID: 7906885354489434538, guid: 915889023dd19e740abae163025606d8, type: 3}
+      propertyPath: _pickUpSpawnChance
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8612356531031245201, guid: 915889023dd19e740abae163025606d8, type: 3}
       propertyPath: m_RootOrder
@@ -7244,6 +7456,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1023143755}
     m_Modifications:
+    - target: {fileID: -2043672501765618817, guid: f854b33ebaf81564c9182ab9e6819505, type: 3}
+      propertyPath: _pickUpPrefab
+      value: 
+      objectReference: {fileID: 864451792643260388, guid: bbd8dcc869b306f40838ea357023cdf9, type: 3}
     - target: {fileID: 3416266932664874007, guid: f854b33ebaf81564c9182ab9e6819505, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -7515,6 +7731,14 @@ PrefabInstance:
     - target: {fileID: 1577570072563057329, guid: 79880c62cf554f648bdd32b2e5831e43, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5199989825310278471, guid: 79880c62cf554f648bdd32b2e5831e43, type: 3}
+      propertyPath: _pickUpPrefab
+      value: 
+      objectReference: {fileID: 7423573488319171070, guid: 406fba02639eae648bcd83cc5b5ccfab, type: 3}
+    - target: {fileID: 5199989825310278471, guid: 79880c62cf554f648bdd32b2e5831e43, type: 3}
+      propertyPath: _pickUpSpawnChance
+      value: 0.653
       objectReference: {fileID: 0}
     - target: {fileID: 7342235792228016217, guid: 79880c62cf554f648bdd32b2e5831e43, type: 3}
       propertyPath: m_Name

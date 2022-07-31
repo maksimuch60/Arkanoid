@@ -14,6 +14,11 @@ public class GameScreen : MonoBehaviour
 
     #region Unity lifecycle
 
+    private void Awake()
+    {
+        SetLivesLabelText(ScoreManager.Instance.Score);
+    }
+
     private void Start()
     {
         ScoreManager.Instance.OnScoreChanged += SetScoreLabelText;

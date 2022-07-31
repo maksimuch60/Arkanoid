@@ -18,7 +18,7 @@ public class ScoreManager : SingletonMonoBehavior<ScoreManager>
 
     #region Public methods
 
-    public void IncrementScore(int score)
+    public void ChangeScore(int score)
     {
         Score += score;
         OnScoreChanged?.Invoke(Score);

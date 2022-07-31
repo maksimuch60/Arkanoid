@@ -1,13 +1,12 @@
 using System;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : SingletonMonoBehavior<GameManager>
 {
     #region Local data
 
     private enum GameState
     {
-        Starting,
         Playing,
         Ending
     }
@@ -20,14 +19,21 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameScreen _gameScreen;
     [SerializeField] private GameScreenManager _gameScreenManager;
     [SerializeField] private LastBallChecker _lastBallChecker;
+    [SerializeField] private bool _needAutoPlay;
     
     
     
-    [SerializeField] private Ball _ball;
     [SerializeField] private int _lives;
 
-    private GameState _currentState = GameState.Starting;
+    private GameState _currentState = GameState.Playing;
     
+    #endregion
+
+
+    #region Properties
+
+    public bool NeedAutoPlay => _needAutoPlay;
+
     #endregion
 
 
@@ -47,21 +53,6 @@ public class GameManager : MonoBehaviour
         _lastBallChecker.OnAllBallsDestroyed -= DecrementLives;
     }
 
-    private void Update()
-    {
-        if (_currentState != GameState.Starting)
-        {
-            return;
-        }
-
-        _ball.ResetBall();
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            StartBall();
-        }
-    }
-
     #endregion
 
 
@@ -70,7 +61,7 @@ public class GameManager : MonoBehaviour
     private void DecrementLives()
     {
         _lives--;
-        _currentState = _lives > 0 ? GameState.Starting : GameState.Ending;
+        _currentState = _lives > 0 ? GameState.Playing : GameState.Ending;
         if (_currentState == GameState.Ending)
         {
             PerformEndGame();
@@ -88,12 +79,7 @@ public class GameManager : MonoBehaviour
     {
         PauseManager.Instance.StopGame();
     }
-
-    private void StartBall()
-    {
-        _currentState = GameState.Playing;
-        _ball.StartMove();
-    }
+    
 
     #endregion
 }
