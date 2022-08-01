@@ -26,7 +26,12 @@ public class Ball : MonoBehaviour
     [SerializeField] private float _maxSpeed;
     [SerializeField] private float _minSpeed;
     
+    [Header("Ball min/max size")]
+    [SerializeField] private Vector3 _maxSize;
+    [SerializeField] private Vector3 _minSize;
+    
     private LastBallChecker _lastBallChecker;
+    private Vector3 _originalSize = Vector3.one;
     private bool _isStarted;
 
     #endregion
@@ -98,6 +103,7 @@ public class Ball : MonoBehaviour
     public void ResetBall()
     {
         _isStarted = false;
+        ResetSize();
         MoveWithPad();
     }
 
@@ -130,10 +136,34 @@ public class Ball : MonoBehaviour
 
     }
 
+    public void ChangeSize(float sizeMultiplier)
+    {
+        Vector3 scale = transform.localScale;
+        scale *= sizeMultiplier;
+        
+        if (scale.magnitude > _maxSize.magnitude)
+        {
+            scale = _maxSize;
+        }
+        
+        if (scale.magnitude < _minSize.magnitude)
+        {
+            scale = _minSize;
+        }
+
+        transform.localScale = scale;
+
+    }
+
     #endregion
 
 
     #region Private methods
+
+    private void ResetSize()
+    {
+        transform.localScale = _originalSize;
+    }
 
     private void MoveWithPad()
     {

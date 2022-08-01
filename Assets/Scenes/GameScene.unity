@@ -7191,6 +7191,8 @@ MonoBehaviour:
   _yMax: 1
   _maxSpeed: 13
   _minSpeed: 3
+  _maxSize: {x: 2, y: 2, z: 2}
+  _minSize: {x: 0.5, y: 0.5, z: 0.5}
 --- !u!1 &2113607650
 GameObject:
   m_ObjectHideFlags: 0
@@ -7567,6 +7569,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39343b9e477d318488f7fe56b29d6951, type: 3}
+--- !u!1001 &5634650313318826602
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7346844353013290304, guid: 09d077031bd2c004c8ca6b7c4bbdeb4d, type: 3}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7346844353013290304, guid: 09d077031bd2c004c8ca6b7c4bbdeb4d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7346844353013290304, guid: 09d077031bd2c004c8ca6b7c4bbdeb4d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7346844353013290304, guid: 09d077031bd2c004c8ca6b7c4bbdeb4d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7346844353013290304, guid: 09d077031bd2c004c8ca6b7c4bbdeb4d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7346844353013290304, guid: 09d077031bd2c004c8ca6b7c4bbdeb4d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7346844353013290304, guid: 09d077031bd2c004c8ca6b7c4bbdeb4d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7346844353013290304, guid: 09d077031bd2c004c8ca6b7c4bbdeb4d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7346844353013290304, guid: 09d077031bd2c004c8ca6b7c4bbdeb4d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7346844353013290304, guid: 09d077031bd2c004c8ca6b7c4bbdeb4d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7346844353013290304, guid: 09d077031bd2c004c8ca6b7c4bbdeb4d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7346844353013290305, guid: 09d077031bd2c004c8ca6b7c4bbdeb4d, type: 3}
+      propertyPath: m_Name
+      value: BallSizeUpPickUp
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 09d077031bd2c004c8ca6b7c4bbdeb4d, type: 3}
 --- !u!1001 &5892299803163797532
 PrefabInstance:
   m_ObjectHideFlags: 0
