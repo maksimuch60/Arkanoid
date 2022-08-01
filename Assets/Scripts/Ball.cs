@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -21,18 +22,19 @@ public class Ball : MonoBehaviour
     [SerializeField] private float _yMin;
     [Range(0.0f, 1.0f)]
     [SerializeField] private float _yMax;
-    
+
     [Header("Ball min/max speed")]
     [SerializeField] private float _maxSpeed;
     [SerializeField] private float _minSpeed;
-    
+
     [Header("Ball min/max size")]
     [SerializeField] private Vector3 _maxSize;
     [SerializeField] private Vector3 _minSize;
-    
+
     private LastBallChecker _lastBallChecker;
     private Vector3 _originalSize = Vector3.one;
     private bool _isStarted;
+    private bool _isMagnetActive;
 
     #endregion
 
@@ -74,7 +76,7 @@ public class Ball : MonoBehaviour
         {
             return;
         }
-        
+
         ResetBall();
 
         if (Input.GetMouseButtonDown(0))
@@ -89,23 +91,19 @@ public class Ball : MonoBehaviour
         Gizmos.DrawLine(transform.position, transform.position + (Vector3) _rigidbody2D.velocity);
     }
 
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (_isMagnetActive && col.gameObject.CompareTag(Tags.Pad))
+        {
+            StopBall();
+            //TODO: make stop at touch point
+        }
+    }
+
     #endregion
 
 
     #region Public methods
-
-    public void StartMove()
-    {
-        OnBallCreated?.Invoke();
-        _rigidbody2D.velocity = GetRandomDirection();
-    }
-
-    public void ResetBall()
-    {
-        _isStarted = false;
-        ResetSize();
-        MoveWithPad();
-    }
 
     public void OnBallFall()
     {
@@ -133,32 +131,63 @@ public class Ball : MonoBehaviour
         }
 
         _rigidbody2D.velocity = velocity.normalized * velocityMagnitude;
-
     }
 
     public void ChangeSize(float sizeMultiplier)
     {
         Vector3 scale = transform.localScale;
         scale *= sizeMultiplier;
-        
+
         if (scale.magnitude > _maxSize.magnitude)
         {
             scale = _maxSize;
         }
-        
+
         if (scale.magnitude < _minSize.magnitude)
         {
             scale = _minSize;
         }
 
         transform.localScale = scale;
+    }
 
+    public void MagnetToPad(float time)
+    {
+        _isMagnetActive = true;
+        StartCoroutine(WaitForEndMagnet(time));
     }
 
     #endregion
 
 
     #region Private methods
+
+    private void StartMove()
+    {
+        OnBallCreated?.Invoke();
+        _rigidbody2D.velocity = GetRandomDirection();
+    }
+
+    private void ResetBall()
+    {
+        _isStarted = false;
+        ResetSize();
+        MoveWithPad();
+    }
+
+    private IEnumerator WaitForEndMagnet(float time)
+    {
+        yield return new WaitForSeconds(time);
+        _isMagnetActive = false;
+    }
+    private void StopBall()
+    {
+        _isStarted = false;
+        Vector3 padPosition = _pad.transform.position;
+        Vector3 currentPosition = transform.position;
+        currentPosition.x = padPosition.x;
+        transform.position = currentPosition;
+    }
 
     private void ResetSize()
     {
