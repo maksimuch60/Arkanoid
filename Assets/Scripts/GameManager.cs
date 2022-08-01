@@ -56,17 +56,33 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     #endregion
 
 
+    #region Public methods
+
+    public void ChangeLives(int life)
+    {
+        _lives += life;
+        CheckLose();
+        _gameScreen.SetLivesLabelText(_lives);
+    }
+
+    #endregion
+
     #region Private methods
 
     private void DecrementLives()
     {
         _lives--;
+        CheckLose();
+        _gameScreen.SetLivesLabelText(_lives);
+    }
+
+    private void CheckLose()
+    {
         _currentState = _lives > 0 ? GameState.Playing : GameState.Ending;
         if (_currentState == GameState.Ending)
         {
             PerformEndGame();
         }
-        _gameScreen.SetLivesLabelText(_lives);
     }
 
     private void PerformEndGame()
