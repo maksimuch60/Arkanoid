@@ -16,7 +16,6 @@ public class Block : MonoBehaviour
     [SerializeField] private Sprite[] _stateSprites;
 
     [Header("PickUp")]
-    [SerializeField] private GameObject _pickUpPrefab;
     [Range(0f, 1f)]
     [SerializeField] private float _pickUpSpawnChance;
 
@@ -26,6 +25,7 @@ public class Block : MonoBehaviour
     #region Events
 
     public static event Action OnDestroyed;
+    public static event Action<Block> OnPickUpSpawned;
     public static event Action OnCreated;
 
     #endregion
@@ -86,15 +86,10 @@ public class Block : MonoBehaviour
 
     private void SpawnPickUp()
     {
-        if (_pickUpPrefab == null)
-        {
-            return;
-        }
-        
         float random = Random.Range(0f, 1f);
         if (random <= _pickUpSpawnChance)
         {
-            Instantiate(_pickUpPrefab, transform.position, Quaternion.identity);
+            OnPickUpSpawned?.Invoke(this);
         }
     }
 

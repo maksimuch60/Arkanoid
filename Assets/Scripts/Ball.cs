@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -10,7 +11,7 @@ public class Ball : MonoBehaviour
     [SerializeField] private Rigidbody2D _rigidbody2D;
     [SerializeField] private Pad _pad;
 
-    [SerializeField] private float _speed;
+    [SerializeField] private float _originalSpeed;
     [SerializeField] private float _offset;
 
     [Header("Random direction range")]
@@ -33,8 +34,10 @@ public class Ball : MonoBehaviour
 
     private LastBallChecker _lastBallChecker;
     private Vector3 _originalSize = Vector3.one;
+    private Vector2 _contactPoint;
     private bool _isStarted;
     private bool _isMagnetActive;
+    private float _speed;
 
     #endregion
 
@@ -64,6 +67,8 @@ public class Ball : MonoBehaviour
 
     private void Start()
     {
+        _speed = _originalSpeed;
+        ResetBall();
         if (GameManager.Instance.NeedAutoPlay)
         {
             StartBall();
@@ -77,7 +82,7 @@ public class Ball : MonoBehaviour
             return;
         }
 
-        ResetBall();
+        MoveWithPad();
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -95,8 +100,8 @@ public class Ball : MonoBehaviour
     {
         if (_isMagnetActive && col.gameObject.CompareTag(Tags.Pad))
         {
-            StopBall();
-            //TODO: make stop at touch point
+            _contactPoint = (Vector2)_pad.transform.position - col.GetContact(0).point;
+            _isStarted = false;
         }
     }
 
@@ -110,7 +115,11 @@ public class Ball : MonoBehaviour
         OnBallFell?.Invoke();
         if (_lastBallChecker.BallCount == 0)
         {
-            _isStarted = false;
+            ResetBall();
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -119,15 +128,18 @@ public class Ball : MonoBehaviour
         Vector2 velocity = _rigidbody2D.velocity;
         float velocityMagnitude = velocity.magnitude;
         velocityMagnitude *= speedMultiplier;
+        _speed *= speedMultiplier;
 
         if (velocityMagnitude < _minSpeed)
         {
             velocityMagnitude = _minSpeed;
+            _speed = _minSpeed;
         }
 
         if (velocityMagnitude > _maxSpeed)
         {
             velocityMagnitude = _maxSpeed;
+            _speed = _maxSpeed;
         }
 
         _rigidbody2D.velocity = velocity.normalized * velocityMagnitude;
@@ -164,29 +176,30 @@ public class Ball : MonoBehaviour
 
     private void StartMove()
     {
-        OnBallCreated?.Invoke();
         _rigidbody2D.velocity = GetRandomDirection();
     }
 
     private void ResetBall()
     {
+        OnBallCreated?.Invoke();
+        
         _isStarted = false;
+        _contactPoint = Vector2.zero;
+        
         ResetSize();
+        ResetSpeed();
         MoveWithPad();
+    }
+
+    private void ResetSpeed()
+    {
+        _speed = _originalSpeed;
     }
 
     private IEnumerator WaitForEndMagnet(float time)
     {
         yield return new WaitForSeconds(time);
         _isMagnetActive = false;
-    }
-    private void StopBall()
-    {
-        _isStarted = false;
-        Vector3 padPosition = _pad.transform.position;
-        Vector3 currentPosition = transform.position;
-        currentPosition.x = padPosition.x;
-        transform.position = currentPosition;
     }
 
     private void ResetSize()
@@ -198,7 +211,7 @@ public class Ball : MonoBehaviour
     {
         Vector3 padPosition = _pad.transform.position;
         Vector3 currentPosition = transform.position;
-        currentPosition.x = padPosition.x;
+        currentPosition.x = padPosition.x - _contactPoint.x;
         currentPosition.y = padPosition.y + _offset;
         transform.position = currentPosition;
     }
