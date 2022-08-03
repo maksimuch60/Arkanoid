@@ -32,41 +32,33 @@ public class Ball : MonoBehaviour
     [SerializeField] private Vector3 _maxSize;
     [SerializeField] private Vector3 _minSize;
 
-    private LastBallChecker _lastBallChecker;
-    private Vector3 _originalSize = Vector3.one;
+    private readonly Vector3 _originalSize = Vector3.one;
     private Vector2 _contactPoint;
     private bool _isStarted;
-    private bool _isMagnetActive;
     private float _speed;
+    private bool _isNewBall;
 
     #endregion
 
 
     #region Events
 
-    public event Action OnBallFell;
-    public event Action OnBallCreated;
+    public static event Action<Ball> OnBallFell;
+    public static event Action<Ball> OnBallCreated;
 
     #endregion
 
 
     #region Unity lifecycle
 
-    private void OnEnable()
-    {
-        _lastBallChecker = FindObjectOfType<LastBallChecker>();
-        OnBallCreated += _lastBallChecker.BallCreate;
-        OnBallFell += _lastBallChecker.BallDestroy;
-    }
-
-    private void OnDestroy()
-    {
-        OnBallCreated -= _lastBallChecker.BallCreate;
-        OnBallFell -= _lastBallChecker.BallDestroy;
-    }
-
     private void Start()
     {
+        if (_isNewBall)
+        {
+            OnBallCreated?.Invoke(this);
+            return;
+        }
+
         _speed = _originalSpeed;
         ResetBall();
         if (GameManager.Instance.NeedAutoPlay)
@@ -96,15 +88,6 @@ public class Ball : MonoBehaviour
         Gizmos.DrawLine(transform.position, transform.position + (Vector3) _rigidbody2D.velocity);
     }
 
-    private void OnCollisionEnter2D(Collision2D col)
-    {
-        if (_isMagnetActive && col.gameObject.CompareTag(Tags.Pad))
-        {
-            _contactPoint = (Vector2)_pad.transform.position - col.GetContact(0).point;
-            _isStarted = false;
-        }
-    }
-
     #endregion
 
 
@@ -112,10 +95,11 @@ public class Ball : MonoBehaviour
 
     public void OnBallFall()
     {
-        OnBallFell?.Invoke();
-        if (_lastBallChecker.BallCount == 0)
+        OnBallFell?.Invoke(this);
+        if (LastBallChecker.Instance.BallCount == 0)
         {
             ResetBall();
+            _pad.ResetPad();
         }
         else
         {
@@ -126,23 +110,19 @@ public class Ball : MonoBehaviour
     public void ChangeSpeed(float speedMultiplier)
     {
         Vector2 velocity = _rigidbody2D.velocity;
-        float velocityMagnitude = velocity.magnitude;
-        velocityMagnitude *= speedMultiplier;
         _speed *= speedMultiplier;
 
-        if (velocityMagnitude < _minSpeed)
+        if (_speed < _minSpeed)
         {
-            velocityMagnitude = _minSpeed;
             _speed = _minSpeed;
         }
 
-        if (velocityMagnitude > _maxSpeed)
+        if (_speed > _maxSpeed)
         {
-            velocityMagnitude = _maxSpeed;
             _speed = _maxSpeed;
         }
 
-        _rigidbody2D.velocity = velocity.normalized * velocityMagnitude;
+        _rigidbody2D.velocity = velocity.normalized * _speed;
     }
 
     public void ChangeSize(float sizeMultiplier)
@@ -163,10 +143,17 @@ public class Ball : MonoBehaviour
         transform.localScale = scale;
     }
 
-    public void MagnetToPad(float time)
+    public void SetContactPoint(Vector2 contactPoint)
     {
-        _isMagnetActive = true;
-        StartCoroutine(WaitForEndMagnet(time));
+        _isStarted = false;
+        _contactPoint = contactPoint;
+    }
+
+    public void Clone(Ball ball)
+    {
+        _isNewBall = true;
+        _speed = ball._speed;
+        StartBall();
     }
 
     #endregion
@@ -181,11 +168,10 @@ public class Ball : MonoBehaviour
 
     private void ResetBall()
     {
-        OnBallCreated?.Invoke();
-        
+        OnBallCreated?.Invoke(this);
         _isStarted = false;
         _contactPoint = Vector2.zero;
-        
+
         ResetSize();
         ResetSpeed();
         MoveWithPad();
@@ -194,12 +180,6 @@ public class Ball : MonoBehaviour
     private void ResetSpeed()
     {
         _speed = _originalSpeed;
-    }
-
-    private IEnumerator WaitForEndMagnet(float time)
-    {
-        yield return new WaitForSeconds(time);
-        _isMagnetActive = false;
     }
 
     private void ResetSize()

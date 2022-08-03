@@ -1,20 +1,23 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class Pad : MonoBehaviour
 {
     #region Variables
-    
+
     [Header("Pad min/max size")]
     [SerializeField] private Vector3 _minSize;
     [SerializeField] private Vector3 _maxSize;
-    
 
     private Ball _ball;
-    private Vector3 _originalSize;
+    private readonly Vector3 _originalSize = Vector3.one;
+    private bool _isMagnetActive;
+    private Vector2 _contactPoint;
 
     #endregion
-    
+
+
     #region Unity lifecycle
 
     private void Start()
@@ -39,6 +42,16 @@ public class Pad : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (_isMagnetActive && col.gameObject.CompareTag(Tags.Ball))
+        {
+            _contactPoint = (Vector2) transform.position - col.GetContact(0).point;
+            Ball ball = col.gameObject.GetComponent<Ball>();
+            ball.SetContactPoint(_contactPoint);
+        }
+    }
+
     #endregion
 
 
@@ -48,12 +61,12 @@ public class Pad : MonoBehaviour
     {
         Vector3 scale = transform.localScale;
         scale.x *= sizeMultiplier;
-        
+
         if (scale.x > _maxSize.x)
         {
             scale = _maxSize;
         }
-        
+
         if (scale.x < _minSize.x)
         {
             scale = _minSize;
@@ -62,10 +75,32 @@ public class Pad : MonoBehaviour
         transform.localScale = scale;
     }
 
+    public void ResetPad()
+    {
+        ResetSize();
+    }
+
+    public void MagnetEffect(float time)
+    {
+        _isMagnetActive = true;
+        StartCoroutine(WaitForEndMagnet(time));
+    }
+
     #endregion
 
 
     #region Private methods
+
+    private IEnumerator WaitForEndMagnet(float time)
+    {
+        yield return new WaitForSeconds(time);
+        _isMagnetActive = false;
+    }
+
+    private void ResetSize()
+    {
+        transform.localScale = _originalSize;
+    }
 
     private void MoveWithBall()
     {

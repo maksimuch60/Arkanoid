@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -16,6 +17,7 @@ public class Block : MonoBehaviour
     [SerializeField] private Sprite[] _stateSprites;
 
     [Header("PickUp")]
+    [SerializeField] private List<PickUps> _pickUps;
     [Range(0f, 1f)]
     [SerializeField] private float _pickUpSpawnChance;
 
@@ -25,7 +27,6 @@ public class Block : MonoBehaviour
     #region Events
 
     public static event Action OnDestroyed;
-    public static event Action<Block> OnPickUpSpawned;
     public static event Action OnCreated;
 
     #endregion
@@ -86,10 +87,31 @@ public class Block : MonoBehaviour
 
     private void SpawnPickUp()
     {
-        float random = Random.Range(0f, 1f);
-        if (random <= _pickUpSpawnChance)
+        if (!IsSpawnPickUp())
         {
-            OnPickUpSpawned?.Invoke(this);
+            return;
+        }
+
+
+        SpawnRandomPickUp();
+    }
+
+    private bool IsSpawnPickUp()
+    {
+        float random = Random.Range(0f, 1f);
+        return random <= _pickUpSpawnChance;
+    }
+
+    private void SpawnRandomPickUp()
+    {
+        float pickUpChance = Random.Range(0f, 1f);
+        foreach (PickUps pickup in _pickUps)
+        {
+            if (pickup.Chance >= pickUpChance)
+            {
+                Instantiate(pickup.PickUp, transform.position, Quaternion.identity);
+                break;
+            }
         }
     }
 

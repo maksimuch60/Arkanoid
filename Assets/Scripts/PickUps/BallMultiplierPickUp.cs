@@ -7,15 +7,13 @@ public class BallMultiplierPickUp : PickUpBase
     
     protected override void ApplyEffect(Collision2D col)
     {
-        Ball[] balls = FindObjectsOfType<Ball>();
-        foreach (Ball ball in balls)
+        foreach (Ball ball in LastBallChecker.Instance.AllBalls)
         {
             for (int i = 0; i < _ballMultiplier; i++)
             {
-                Instantiate(ball, ball.transform.position, Quaternion.identity);
-                
+                Ball newBall = Instantiate(ball, ball.transform.position, Quaternion.identity);
+                newBall.Clone(ball);
             }
-            //ball.MultipleBall(_ballMultiplier);
         }
     }
 }

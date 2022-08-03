@@ -7,8 +7,7 @@ public class BallSizeChangePickUp : PickUpBase
     
     protected override void ApplyEffect(Collision2D col)
     {
-        Ball[] balls = FindObjectsOfType<Ball>();
-        foreach (Ball ball in balls)
+        foreach (Ball ball in LastBallChecker.Instance.AllBalls)
         {
             ball.ChangeSize(_sizeMultiplier);
         }

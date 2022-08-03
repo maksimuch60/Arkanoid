@@ -51,7 +51,15 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 2642269815059442817}
   _stateSprites:
   - {fileID: 21300000, guid: ecde7d34863ae470b83a7f924d58ecad, type: 3}
-  _pickUpPrefab: {fileID: 0}
+  _pickUps:
+  - PickUp: {fileID: 2782003436527108412, guid: edd8c756c2dbcc343830c24cd2a5255f, type: 3}
+    Chance: 0.15
+  - PickUp: {fileID: 7383157644924096293, guid: 8824a35ce6af4294ba8e6426111e1796, type: 3}
+    Chance: 0.3
+  - PickUp: {fileID: 5550974684252986662, guid: 0b0ee0b822c4dec45955fb91502bee46, type: 3}
+    Chance: 0.9
+  - PickUp: {fileID: 4672096358731408074, guid: 0b72fe562a6db9f4b86ce9f356f4625b, type: 3}
+    Chance: 1
   _pickUpSpawnChance: 0.448
 --- !u!212 &2642269815059442817
 SpriteRenderer:
