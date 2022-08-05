@@ -21,7 +21,7 @@ public class InvisibleBlock : Block
         ApplyDamage();
     }
 
-    protected override void ApplyDamage()
+    protected internal override void ApplyDamage()
     {
         if (!_isVisible)
         {

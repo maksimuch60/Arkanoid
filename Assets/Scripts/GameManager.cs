@@ -18,15 +18,12 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     [SerializeField] private GameScreen _gameScreen;
     [SerializeField] private GameScreenManager _gameScreenManager;
-    [SerializeField] private LastBallChecker _lastBallChecker;
     [SerializeField] private bool _needAutoPlay;
-    
-    
-    
+
     [SerializeField] private int _lives;
 
     private GameState _currentState = GameState.Playing;
-    
+
     #endregion
 
 
@@ -40,17 +37,17 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     #region Unity lifecycle
 
     private void Start()
-    {   
+    {
         _gameScreen.SetLivesLabelText(_lives);
         _gameScreenManager.ChangeScreen(Screens.GameScreen);
         LevelManager.Instance.OnAllBlocksDestroyed += PerformEndGame;
-        _lastBallChecker.OnAllBallsDestroyed += DecrementLives;
+        BallsHandler.Instance.OnAllBallsDestroyed += DecrementLives;
     }
 
     private void OnDestroy()
     {
         LevelManager.Instance.OnAllBlocksDestroyed -= PerformEndGame;
-        _lastBallChecker.OnAllBallsDestroyed -= DecrementLives;
+        BallsHandler.Instance.OnAllBallsDestroyed -= DecrementLives;
     }
 
     #endregion
@@ -66,6 +63,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     }
 
     #endregion
+
 
     #region Private methods
 
@@ -95,7 +93,6 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     {
         PauseManager.Instance.StopGame();
     }
-    
 
     #endregion
 }

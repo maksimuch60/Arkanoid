@@ -56,9 +56,9 @@ MonoBehaviour:
   - PickUp: {fileID: 2782003436527108412, guid: edd8c756c2dbcc343830c24cd2a5255f, type: 3}
     Chance: 0.4
   - PickUp: {fileID: 4672096358731408074, guid: 0b72fe562a6db9f4b86ce9f356f4625b, type: 3}
-    Chance: 0.8
+    Chance: 0.4
   - PickUp: {fileID: 5550974684252986662, guid: 0b0ee0b822c4dec45955fb91502bee46, type: 3}
-    Chance: 1
+    Chance: 0.2
   _pickUpSpawnChance: 0.754
 --- !u!212 &1620945206235708354
 SpriteRenderer:

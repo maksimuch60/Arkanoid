@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5892299802819358986
+--- !u!1 &7712543015672593384
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,72 +8,63 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5892299802819358981}
-  - component: {fileID: -2937939735002273156}
-  - component: {fileID: 5892299802819358980}
-  - component: {fileID: 5892299802819358987}
+  - component: {fileID: 7712543015672593383}
+  - component: {fileID: -1939451119781695487}
+  - component: {fileID: 7712543015672593382}
+  - component: {fileID: 7712543015672593385}
   m_Layer: 10
-  m_Name: WoodBlock
+  m_Name: ExplosiveBlock
   m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5892299802819358981
+--- !u!4 &7712543015672593383
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5892299802819358986}
+  m_GameObject: {fileID: 7712543015672593384}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.5, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-2937939735002273156
+--- !u!114 &-1939451119781695487
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5892299802819358986}
+  m_GameObject: {fileID: 7712543015672593384}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35349b7b8db643609d85daa1d7aa755f, type: 3}
+  m_Script: {fileID: 11500000, guid: 4cd0b29f018b4a63b3225adb6e8a1c45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _blockHP: 2
-  _blockScore: 5
-  _spriteRenderer: {fileID: 5892299802819358980}
+  _blockScore: 15
+  _spriteRenderer: {fileID: 7712543015672593382}
   _stateSprites:
-  - {fileID: 21300000, guid: 867a4fec287e04fc4a9b6b7b4d7b3f55, type: 3}
-  _pickUps:
-  - PickUp: {fileID: 7674570678345337187, guid: 7769f8e664c3bef4291f3c577a7c542b, type: 3}
-    Chance: 0.15
-  - PickUp: {fileID: 793426043834446483, guid: 09d077031bd2c004c8ca6b7c4bbdeb4d, type: 3}
-    Chance: 0.15
-  - PickUp: {fileID: 749593578062329888, guid: b9d4b418828645442b5eb3e4c17d4c8f, type: 3}
-    Chance: 0.15
-  - PickUp: {fileID: 2064722952598247571, guid: 7a10d48a48f271c41be5ef92a87874e9, type: 3}
-    Chance: 0.15
-  - PickUp: {fileID: 3437459358470544008, guid: 406fba02639eae648bcd83cc5b5ccfab, type: 3}
-    Chance: 0.15
-  - PickUp: {fileID: 4850022209429466258, guid: bbd8dcc869b306f40838ea357023cdf9, type: 3}
-    Chance: 0.15
-  - PickUp: {fileID: 5550974684252986662, guid: 0b0ee0b822c4dec45955fb91502bee46, type: 3}
-    Chance: 0.1
-  _pickUpSpawnChance: 0.754
---- !u!212 &5892299802819358980
+  - {fileID: 21300000, guid: 7fd2093a5d2b74ae287a97658424d510, type: 3}
+  - {fileID: 21300000, guid: fc4bb5546863d4387bfb9c42dc0e83eb, type: 3}
+  _pickUps: []
+  _pickUpSpawnChance: 0
+  _explodeRadius: 1
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+--- !u!212 &7712543015672593382
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5892299802819358986}
+  m_GameObject: {fileID: 7712543015672593384}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -108,7 +99,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 29b64dda6ef7b400c9d694778761da1f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 19211e563bd9a49b18fd8ea51c080c09, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -119,13 +110,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &5892299802819358987
+--- !u!61 &7712543015672593385
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5892299802819358986}
+  m_GameObject: {fileID: 7712543015672593384}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LastBallChecker : SingletonMonoBehavior<LastBallChecker>
+public class BallsHandler : SingletonMonoBehavior<BallsHandler>
 {
     #region Properties
 

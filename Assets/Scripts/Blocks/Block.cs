@@ -17,7 +17,7 @@ public class Block : MonoBehaviour
     [SerializeField] private Sprite[] _stateSprites;
 
     [Header("PickUp")]
-    [SerializeField] private List<PickUps> _pickUps;
+    [SerializeField] private List<PickUpInfo> _pickUps;
     [Range(0f, 1f)]
     [SerializeField] private float _pickUpSpawnChance;
 
@@ -44,22 +44,35 @@ public class Block : MonoBehaviour
         ApplyDamage();
     }
 
-    protected virtual void ApplyDamage()
-    {
-        DecrementHp();
-        CheckDestruction();
-        ChangeSprite();
-    }
-
     private void OnDestroy()
     {
         OnDestroyed?.Invoke();
+    }
+
+    private void OnValidate()
+    {
+        if (_pickUps == null || _pickUps.Count == 0)
+        {
+            return;
+        }
+
+        foreach (PickUpInfo pickUp in _pickUps)
+        {
+            pickUp.UpdateName();
+        }
     }
 
     #endregion
 
 
     #region Private methods
+
+    protected internal virtual void ApplyDamage()
+    {
+        DecrementHp();
+        CheckDestruction();
+        ChangeSprite();
+    }
 
     private void ChangeSprite()
     {
@@ -82,6 +95,11 @@ public class Block : MonoBehaviour
 
         ScoreManager.Instance.ChangeScore(_blockScore);
         SpawnPickUp();
+        DestroyBlock();
+    }
+
+    protected virtual void DestroyBlock()
+    {
         Destroy(gameObject);
     }
 
@@ -91,8 +109,7 @@ public class Block : MonoBehaviour
         {
             return;
         }
-
-
+        
         SpawnRandomPickUp();
     }
 
@@ -104,10 +121,18 @@ public class Block : MonoBehaviour
 
     private void SpawnRandomPickUp()
     {
-        float pickUpChance = Random.Range(0f, 1f);
-        foreach (PickUps pickup in _pickUps)
+        float sum = 0;
+        float currentValue = 0;
+        foreach (PickUpInfo pickUp in _pickUps)
         {
-            if (pickup.Chance >= pickUpChance)
+            sum += pickUp.Chance;
+        }
+        
+        float pickUpChance = Random.Range(0f, sum);
+        foreach (PickUpInfo pickup in _pickUps)
+        {
+            currentValue += pickup.Chance;
+            if (currentValue >= pickUpChance)
             {
                 Instantiate(pickup.PickUp, transform.position, Quaternion.identity);
                 break;

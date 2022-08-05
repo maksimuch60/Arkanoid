@@ -96,7 +96,7 @@ public class Ball : MonoBehaviour
     public void OnBallFall()
     {
         OnBallFell?.Invoke(this);
-        if (LastBallChecker.Instance.BallCount == 0)
+        if (BallsHandler.Instance.BallCount == 0)
         {
             ResetBall();
             _pad.ResetPad();

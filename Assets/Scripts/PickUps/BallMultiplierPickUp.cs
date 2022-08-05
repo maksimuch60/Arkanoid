@@ -7,7 +7,7 @@ public class BallMultiplierPickUp : PickUpBase
     
     protected override void ApplyEffect(Collision2D col)
     {
-        foreach (Ball ball in LastBallChecker.Instance.AllBalls)
+        foreach (Ball ball in BallsHandler.Instance.AllBalls)
         {
             for (int i = 0; i < _ballMultiplier; i++)
             {
