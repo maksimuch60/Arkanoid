@@ -53,13 +53,17 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2854ee18f114d4b1fa00a5e53e9e1666, type: 3}
   - {fileID: 21300000, guid: 25fff95bb29da4c8c9e46644cffe8d9b, type: 3}
   _pickUps:
-  - PickUp: {fileID: 2782003436527108412, guid: edd8c756c2dbcc343830c24cd2a5255f, type: 3}
+  - name: LifeAddPickUp
+    PickUp: {fileID: 2782003436527108412, guid: edd8c756c2dbcc343830c24cd2a5255f, type: 3}
     Chance: 0.4
-  - PickUp: {fileID: 4672096358731408074, guid: 0b72fe562a6db9f4b86ce9f356f4625b, type: 3}
+  - name: BallMultiplierPickUp
+    PickUp: {fileID: 4672096358731408074, guid: 0b72fe562a6db9f4b86ce9f356f4625b, type: 3}
     Chance: 0.4
-  - PickUp: {fileID: 5550974684252986662, guid: 0b0ee0b822c4dec45955fb91502bee46, type: 3}
+  - name: MagnetPickUp
+    PickUp: {fileID: 5550974684252986662, guid: 0b0ee0b822c4dec45955fb91502bee46, type: 3}
     Chance: 0.2
   _pickUpSpawnChance: 0.754
+  _touchSound: {fileID: 8300000, guid: d8d04c6f80a1140db85ede568dab1f51, type: 3}
 --- !u!212 &1620945206235708354
 SpriteRenderer:
   m_ObjectHideFlags: 0

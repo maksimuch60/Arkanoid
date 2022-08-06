@@ -4,7 +4,10 @@ public class InvisibleBlock : Block
 {
     #region Variables
 
-
+    [Header(nameof(InvisibleBlock))]
+    [SerializeField] private AudioClip _visibleSound;
+    
+    
     private bool _isVisible;
 
     #endregion
@@ -25,6 +28,7 @@ public class InvisibleBlock : Block
     {
         if (!_isVisible)
         {
+            AudioPlayer.Instance.PlaySound(_visibleSound);
             _spriteRenderer.enabled = true;
             _isVisible = true;
         }

@@ -20,6 +20,10 @@ public class Block : MonoBehaviour
     [SerializeField] private List<PickUpInfo> _pickUps;
     [Range(0f, 1f)]
     [SerializeField] private float _pickUpSpawnChance;
+    
+    [Header("Audio")]
+    [SerializeField] private AudioClip _touchSound;
+    
 
     #endregion
 
@@ -69,9 +73,16 @@ public class Block : MonoBehaviour
 
     protected internal virtual void ApplyDamage()
     {
+        PlaySound();
+        
         DecrementHp();
         CheckDestruction();
         ChangeSprite();
+    }
+
+    private void PlaySound()
+    {
+        AudioPlayer.Instance.PlaySound(_touchSound);
     }
 
     private void ChangeSprite()

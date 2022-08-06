@@ -8,6 +8,7 @@ class ExplosiveBlock : Block
     [Header(nameof(ExplosiveBlock))]
     [SerializeField] private float _explodeRadius;
     [SerializeField] private LayerMask _layerMask;
+    [SerializeField] private AudioClip _explodeSound;
     
 
     #endregion
@@ -30,6 +31,8 @@ class ExplosiveBlock : Block
     protected override void DestroyBlock()
     {
         base.DestroyBlock();
+        
+        AudioPlayer.Instance.PlaySound(_explodeSound);
         
         Explode();
     }

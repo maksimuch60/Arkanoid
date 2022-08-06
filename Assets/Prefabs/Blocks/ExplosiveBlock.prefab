@@ -54,10 +54,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: fc4bb5546863d4387bfb9c42dc0e83eb, type: 3}
   _pickUps: []
   _pickUpSpawnChance: 0
+  _touchSound: {fileID: 8300000, guid: b43d102aac6b145468dcaa94a5cccae1, type: 3}
   _explodeRadius: 1
   _layerMask:
     serializedVersion: 2
     m_Bits: 1024
+  _explodeSound: {fileID: 8300000, guid: b9eff218e132a4e76be78840eca96fb2, type: 3}
 --- !u!212 &7712543015672593382
 SpriteRenderer:
   m_ObjectHideFlags: 0

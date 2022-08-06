@@ -52,21 +52,29 @@ MonoBehaviour:
   _stateSprites:
   - {fileID: 21300000, guid: 867a4fec287e04fc4a9b6b7b4d7b3f55, type: 3}
   _pickUps:
-  - PickUp: {fileID: 7674570678345337187, guid: 7769f8e664c3bef4291f3c577a7c542b, type: 3}
+  - name: BallSizeDownPickUp
+    PickUp: {fileID: 7674570678345337187, guid: 7769f8e664c3bef4291f3c577a7c542b, type: 3}
     Chance: 0.15
-  - PickUp: {fileID: 793426043834446483, guid: 09d077031bd2c004c8ca6b7c4bbdeb4d, type: 3}
+  - name: BallSizeUpPickUp
+    PickUp: {fileID: 793426043834446483, guid: 09d077031bd2c004c8ca6b7c4bbdeb4d, type: 3}
     Chance: 0.15
-  - PickUp: {fileID: 749593578062329888, guid: b9d4b418828645442b5eb3e4c17d4c8f, type: 3}
+  - name: PadSizeDownPickUp
+    PickUp: {fileID: 749593578062329888, guid: b9d4b418828645442b5eb3e4c17d4c8f, type: 3}
     Chance: 0.15
-  - PickUp: {fileID: 2064722952598247571, guid: 7a10d48a48f271c41be5ef92a87874e9, type: 3}
+  - name: PadSizeUpPickUp
+    PickUp: {fileID: 2064722952598247571, guid: 7a10d48a48f271c41be5ef92a87874e9, type: 3}
     Chance: 0.15
-  - PickUp: {fileID: 3437459358470544008, guid: 406fba02639eae648bcd83cc5b5ccfab, type: 3}
+  - name: SpeedDownPickUp
+    PickUp: {fileID: 3437459358470544008, guid: 406fba02639eae648bcd83cc5b5ccfab, type: 3}
     Chance: 0.15
-  - PickUp: {fileID: 4850022209429466258, guid: bbd8dcc869b306f40838ea357023cdf9, type: 3}
+  - name: SpeedUpPickUp
+    PickUp: {fileID: 4850022209429466258, guid: bbd8dcc869b306f40838ea357023cdf9, type: 3}
     Chance: 0.15
-  - PickUp: {fileID: 5550974684252986662, guid: 0b0ee0b822c4dec45955fb91502bee46, type: 3}
+  - name: MagnetPickUp
+    PickUp: {fileID: 5550974684252986662, guid: 0b0ee0b822c4dec45955fb91502bee46, type: 3}
     Chance: 0.1
   _pickUpSpawnChance: 0.754
+  _touchSound: {fileID: 8300000, guid: d8d04c6f80a1140db85ede568dab1f51, type: 3}
 --- !u!212 &5892299802819358980
 SpriteRenderer:
   m_ObjectHideFlags: 0
