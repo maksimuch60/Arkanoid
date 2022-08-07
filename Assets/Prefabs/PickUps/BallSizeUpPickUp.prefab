@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a49b8a3c298749ea92bc84611546df08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pickUpScore: 10
   _sizeMultiplier: 1.2
 --- !u!212 &8358661603123742322
 SpriteRenderer:
