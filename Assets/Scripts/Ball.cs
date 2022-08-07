@@ -10,11 +10,11 @@ public class Ball : MonoBehaviour
 
     [SerializeField] private Rigidbody2D _rigidbody2D;
     [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private TrailRenderer _trailRenderer;
     [SerializeField] private Pad _pad;
 
     [SerializeField] private float _originalSpeed;
     [SerializeField] private Sprite _originalSprite;
-    [SerializeField] private AudioClip _originalSound;
     [SerializeField] private float _offset;
 
     [Header("Random direction range")]
@@ -39,7 +39,13 @@ public class Ball : MonoBehaviour
     [SerializeField] private Sprite _fireBallSprite;
     [SerializeField] private float _explodeRadius;
     [SerializeField] private LayerMask _layerMask;
+    
+    [Header("Music")]
+    [SerializeField] private AudioClip _originalSound;
     [SerializeField] private AudioClip _fireBallSound;
+    [Range(0f, 1f)]
+    [SerializeField] private float _volume;
+    
 
     private readonly Vector3 _originalSize = Vector3.one;
 
@@ -108,7 +114,7 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        AudioPlayer.Instance.PlaySound(_currentSound);
+        AudioPlayer.Instance.PlaySound(_currentSound, _volume);
         
         if (_isFireBallActive)
         {
@@ -187,11 +193,13 @@ public class Ball : MonoBehaviour
         _isFireBallActive = true;
         _spriteRenderer.sprite = _fireBallSprite;
         _currentSound = _fireBallSound;
+        _trailRenderer.enabled = true;
     }
 
     public void Clone(Ball ball)
     {
         _isNewBall = true;
+        _isFireBallActive = ball._isFireBallActive;
         _speed = ball._speed;
         StartBall();
     }
@@ -213,6 +221,7 @@ public class Ball : MonoBehaviour
         _isFireBallActive = false;
         _contactPoint = Vector2.zero;
         _currentSound = _originalSound;
+        _trailRenderer.enabled = false;
 
         ResetSize();
         ResetSpeed();

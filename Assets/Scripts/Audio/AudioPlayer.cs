@@ -19,6 +19,16 @@ public class AudioPlayer : SingletonMonoBehavior<AudioPlayer>
         
         _audioSource.PlayOneShot(audioClip);
     }
+    
+    public void PlaySound(AudioClip audioClip, float volume)
+    {
+        if (audioClip == null)
+        {
+            return;
+        }
+        
+        _audioSource.PlayOneShot(audioClip, volume);
+    }
 
     #endregion
 }
