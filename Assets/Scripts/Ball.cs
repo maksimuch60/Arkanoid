@@ -9,9 +9,12 @@ public class Ball : MonoBehaviour
     #region Variables
 
     [SerializeField] private Rigidbody2D _rigidbody2D;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Pad _pad;
 
     [SerializeField] private float _originalSpeed;
+    [SerializeField] private Sprite _originalSprite;
+    [SerializeField] private AudioClip _originalSound;
     [SerializeField] private float _offset;
 
     [Header("Random direction range")]
@@ -32,11 +35,20 @@ public class Ball : MonoBehaviour
     [SerializeField] private Vector3 _maxSize;
     [SerializeField] private Vector3 _minSize;
 
+    [Header("Fire ball")]
+    [SerializeField] private Sprite _fireBallSprite;
+    [SerializeField] private float _explodeRadius;
+    [SerializeField] private LayerMask _layerMask;
+    [SerializeField] private AudioClip _fireBallSound;
+
     private readonly Vector3 _originalSize = Vector3.one;
+
     private Vector2 _contactPoint;
-    private bool _isStarted;
     private float _speed;
+    private bool _isStarted;
     private bool _isNewBall;
+    private bool _isFireBallActive;
+    private AudioClip _currentSound;
 
     #endregion
 
@@ -86,6 +98,27 @@ public class Ball : MonoBehaviour
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawLine(transform.position, transform.position + (Vector3) _rigidbody2D.velocity);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, _explodeRadius);
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        AudioPlayer.Instance.PlaySound(_currentSound);
+        
+        if (_isFireBallActive)
+        {
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _explodeRadius, _layerMask);
+            foreach (Collider2D collider1 in colliders)
+            {
+                Block block = collider1.GetComponent<Block>();
+                block.ApplyDamage();
+            }
+        }
     }
 
     #endregion
@@ -149,6 +182,13 @@ public class Ball : MonoBehaviour
         _contactPoint = contactPoint;
     }
 
+    public void EnableFireEffect()
+    {
+        _isFireBallActive = true;
+        _spriteRenderer.sprite = _fireBallSprite;
+        _currentSound = _fireBallSound;
+    }
+
     public void Clone(Ball ball)
     {
         _isNewBall = true;
@@ -170,11 +210,19 @@ public class Ball : MonoBehaviour
     {
         OnBallCreated?.Invoke(this);
         _isStarted = false;
+        _isFireBallActive = false;
         _contactPoint = Vector2.zero;
+        _currentSound = _originalSound;
 
         ResetSize();
         ResetSpeed();
+        ResetSprite();
         MoveWithPad();
+    }
+
+    private void ResetSprite()
+    {
+        _spriteRenderer.sprite = _originalSprite;
     }
 
     private void ResetSpeed()
