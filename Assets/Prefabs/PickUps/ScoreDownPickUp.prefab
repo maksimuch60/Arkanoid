@@ -99,6 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d43789ac65784f019f51339afdc94b79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pickUpScore: 0
+  _pickUpSound: {fileID: 8300000, guid: 7bef0064f8567430cac22499c6b93d4f, type: 3}
+  _volume: 0.3
   _score: -5
 --- !u!50 &-327666215590885353
 Rigidbody2D:

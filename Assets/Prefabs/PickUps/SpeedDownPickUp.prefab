@@ -48,6 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pickUpScore: 10
+  _pickUpSound: {fileID: 8300000, guid: 7bef0064f8567430cac22499c6b93d4f, type: 3}
+  _volume: 0.3
   _speedMultiplier: 0.8
 --- !u!212 &8146737620393122509
 SpriteRenderer:

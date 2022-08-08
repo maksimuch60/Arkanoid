@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7342235792228016217}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.5, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -63,6 +63,9 @@ MonoBehaviour:
     Chance: 0.6
   - name: BallMultiplierPickUp
     PickUp: {fileID: 4672096358731408074, guid: 0b72fe562a6db9f4b86ce9f356f4625b, type: 3}
+    Chance: 0.1
+  - name: FireBallPickUp
+    PickUp: {fileID: 6480074769702767368, guid: 52fdf3883e3534a4d8f80683d6413c58, type: 3}
     Chance: 0.1
   _pickUpSpawnChance: 0.448
   _touchSound: {fileID: 8300000, guid: b43d102aac6b145468dcaa94a5cccae1, type: 3}

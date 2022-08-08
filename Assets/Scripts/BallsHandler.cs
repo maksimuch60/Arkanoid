@@ -27,6 +27,22 @@ public class BallsHandler : SingletonMonoBehavior<BallsHandler>
         Ball.OnBallFell += BallDestroy;
     }
 
+    private void OnDestroy()
+    {
+        Ball.OnBallCreated -= BallCreate;
+        Ball.OnBallFell -= BallDestroy;
+    }
+
+    #endregion
+
+
+    #region Public methods
+
+    public void ResetBallHandler()
+    {
+        AllBalls.Clear();
+    }
+
     #endregion
 
 

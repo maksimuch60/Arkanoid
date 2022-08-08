@@ -6,6 +6,13 @@ public abstract class PickUpBase : MonoBehaviour
 
     [Header(nameof(PickUpBase))]
     [SerializeField] private int _pickUpScore;
+    
+    [Header("Music")]
+    [SerializeField] private AudioClip _pickUpSound;
+    [Range(0f, 1f)]
+    [SerializeField] private float _volume;
+    
+    
 
     #endregion
 
@@ -19,8 +26,9 @@ public abstract class PickUpBase : MonoBehaviour
             return;
         }
 
-        ApplyEffect(col);
+        AudioPlayer.Instance.PlaySound(_pickUpSound, _volume);
         AddScore();
+        ApplyEffect(col);
         Destroy(gameObject);
     }
 

@@ -1,5 +1,8 @@
 using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class GameManager : SingletonMonoBehavior<GameManager>
 {
@@ -17,11 +20,12 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     #region Variables
 
     [SerializeField] private GameScreen _gameScreen;
-    [SerializeField] private GameScreenManager _gameScreenManager;
     [SerializeField] private bool _needAutoPlay;
 
-    [SerializeField] private int _lives;
-
+    [SerializeField] private int _originalLives;
+    
+    private int _lives;
+    private ScreenManager _screenManager;
     private GameState _currentState = GameState.Playing;
 
     #endregion
@@ -30,23 +34,30 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     #region Properties
 
     public bool NeedAutoPlay => _needAutoPlay;
+    public int Lives => _lives;
 
     #endregion
 
 
     #region Unity lifecycle
 
+    protected override void Awake()
+    {
+        base.Awake();
+
+        _lives = _originalLives;
+    }
+
     private void Start()
     {
-        _gameScreen.SetLivesLabelText(_lives);
-        _gameScreenManager.ChangeScreen(Screens.GameScreen);
-        LevelManager.Instance.OnAllBlocksDestroyed += PerformEndGame;
+        _screenManager = FindObjectOfType<ScreenManager>();
+        LevelManager.Instance.OnAllBlocksDestroyed += PerformGameWin;
         BallsHandler.Instance.OnAllBallsDestroyed += DecrementLives;
     }
 
     private void OnDestroy()
     {
-        LevelManager.Instance.OnAllBlocksDestroyed -= PerformEndGame;
+        LevelManager.Instance.OnAllBlocksDestroyed -= PerformGameWin;
         BallsHandler.Instance.OnAllBallsDestroyed -= DecrementLives;
     }
 
@@ -54,6 +65,13 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
 
     #region Public methods
+
+    public void ResetGame()
+    {
+        ResetLives();
+        ResetScore();
+        BallsHandler.Instance.ResetBallHandler();
+    }
 
     public void ChangeLives(int life)
     {
@@ -86,12 +104,29 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     private void PerformEndGame()
     {
         StopGame();
-        _gameScreenManager.ChangeScreen(Screens.EndGameScreen);
+        ResetGame();
+        _screenManager.NextScreen(GameUIScreens.GameOverScreen);
+    }
+
+    private void PerformGameWin()
+    {
+        StopGame();
+        _screenManager.NextScreen(GameUIScreens.GameWinScreen);
     }
 
     private void StopGame()
     {
         PauseManager.Instance.StopGame();
+    }
+
+    private void ResetLives()
+    {
+        _lives = _originalLives;
+    }
+
+    private void ResetScore()
+    {
+        ScoreManager.Instance.ResetScore();
     }
 
     #endregion

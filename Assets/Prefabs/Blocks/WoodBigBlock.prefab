@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6197634627468441505}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.5, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -61,6 +61,9 @@ MonoBehaviour:
     Chance: 0.4
   - name: MagnetPickUp
     PickUp: {fileID: 5550974684252986662, guid: 0b0ee0b822c4dec45955fb91502bee46, type: 3}
+    Chance: 0.2
+  - name: FireBallPickUp
+    PickUp: {fileID: 6480074769702767368, guid: 52fdf3883e3534a4d8f80683d6413c58, type: 3}
     Chance: 0.2
   _pickUpSpawnChance: 0.754
   _touchSound: {fileID: 8300000, guid: d8d04c6f80a1140db85ede568dab1f51, type: 3}

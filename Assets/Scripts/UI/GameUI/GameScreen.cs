@@ -16,7 +16,8 @@ public class GameScreen : MonoBehaviour
 
     private void Awake()
     {
-        SetLivesLabelText(ScoreManager.Instance.Score);
+        SetScoreLabelText(ScoreManager.Instance.Score);
+        SetLivesLabelText(GameManager.Instance.Lives);
     }
 
     private void Start()

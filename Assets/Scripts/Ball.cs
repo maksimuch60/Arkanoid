@@ -116,7 +116,7 @@ public class Ball : MonoBehaviour
     {
         AudioPlayer.Instance.PlaySound(_currentSound, _volume);
         
-        if (_isFireBallActive)
+        if (_isFireBallActive && col.gameObject.CompareTag(Tags.Block))
         {
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _explodeRadius, _layerMask);
             foreach (Collider2D collider1 in colliders)

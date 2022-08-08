@@ -1,10 +1,12 @@
+using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PauseManager : SingletonMonoBehavior<PauseManager>
 {
     #region Variables
 
-    [SerializeField] private GameScreenManager _gameScreenManager;
+    private ScreenManager _screenManager;
 
     private bool _ultimatePause;
 
@@ -20,6 +22,11 @@ public class PauseManager : SingletonMonoBehavior<PauseManager>
 
     #region Unity lifecycle
 
+    private void Start()
+    {
+        _screenManager = FindObjectOfType<ScreenManager>();
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && !_ultimatePause)
@@ -31,23 +38,7 @@ public class PauseManager : SingletonMonoBehavior<PauseManager>
     #endregion
 
 
-    #region Private methods
-
-    private void TogglePause()
-    {
-        _gameScreenManager.ChangeScreen(IsPaused ? _gameScreenManager.GetPreviousScreenName() : Screens.PauseScreen);
-        IsPaused = !IsPaused;
-        if (IsPaused)
-        {
-            StopGame();
-        }
-        else
-        {
-            ResumeGame();
-        }
-
-        _ultimatePause = false;
-    }
+    #region Public methods
 
     public void StopGame()
     {
@@ -60,6 +51,28 @@ public class PauseManager : SingletonMonoBehavior<PauseManager>
     {
         IsPaused = false;
         Time.timeScale = 1;
+        _ultimatePause = false;
+    }
+
+    #endregion
+
+
+    #region Private methods
+
+    private void TogglePause()
+    {
+        IsPaused = !IsPaused;
+        if (IsPaused)
+        {
+            StopGame();
+            _screenManager.NextScreen(GameUIScreens.PauseScreen);
+        }
+        else
+        {
+            ResumeGame();
+            _screenManager.PrevScreen();
+        }
+
         _ultimatePause = false;
     }
 
