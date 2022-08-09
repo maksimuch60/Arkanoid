@@ -37,6 +37,7 @@ public class GameWinScreen : MonoBehaviour
 
     private void NextLevelButtonClicked()
     {
+        PauseManager.Instance.ResumeGame();
         SceneLoader.Instance.LoadScene(NextSceneName());
     }
 
@@ -44,8 +45,7 @@ public class GameWinScreen : MonoBehaviour
     {
         int currentSceneIndex = -1;
         string currentSceneName = SceneManager.GetActiveScene().name;
-        Debug.Log($"{currentSceneName}");
-
+        Log(currentSceneName);
         for (int i = 0; i < SceneNames.LevelScene.Count; i++)
         {
             if (currentSceneName.Equals(SceneNames.LevelScene[i]))
@@ -54,9 +54,10 @@ public class GameWinScreen : MonoBehaviour
             }
         }
 
-        Debug.Log($"{SceneNames.LevelScene[currentSceneIndex]}");
+        Log(SceneNames.LevelScene[currentSceneIndex]);
         if (currentSceneIndex == SceneNames.LevelScene.Count - 1)
         {
+            GameManager.Instance.ResetGame();
             return SceneNames.StartScene;
         }
 
@@ -66,6 +67,11 @@ public class GameWinScreen : MonoBehaviour
     private void SetScoreText()
     {
         _scoreLabel.text = ScoreManager.Instance.Score.ToString();
+    }
+
+    private void Log(string log)
+    {
+        Debug.Log(log);
     }
 
     #endregion

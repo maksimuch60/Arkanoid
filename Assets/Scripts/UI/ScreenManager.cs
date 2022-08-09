@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -10,14 +11,39 @@ public class ScreenManager : MonoBehaviour
     private Stack<GameObject> _screenHierarchy = new Stack<GameObject>();
 
     #endregion
-    
-    #region Public methods
+
+
+    #region Unity lifecycle
 
     private void Awake()
     {
+        _screenHierarchy.Clear();
         _screenHierarchy.Push(_screens.First());
         SetActive(true);
     }
+
+    private void Start()
+    {
+        GameManager.Instance.OnScreenChanged += NextScreen;
+        PauseManager.Instance.OnScreenChanged += NextScreen;
+        PauseManager.Instance.OnPrevScreenChanged += PrevScreen;
+    }
+
+    private void OnEnable()
+    {
+        _screenHierarchy.Clear();
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.OnScreenChanged -= NextScreen;
+        PauseManager.Instance.OnScreenChanged -= NextScreen;
+        PauseManager.Instance.OnPrevScreenChanged -= PrevScreen;
+    }
+
+    #endregion
+
+    #region Public methods
 
     public void NextScreen(string nextScreenName)
     {
@@ -58,7 +84,7 @@ public class ScreenManager : MonoBehaviour
 
     private void SetActive(bool isActive)
     {
-        if (_screenHierarchy == null && _screenHierarchy.Count == 0)
+        if (_screenHierarchy == null || _screenHierarchy.Count == 0)
         {
             return;
         }

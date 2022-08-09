@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 public class GameManager : SingletonMonoBehavior<GameManager>
 {
@@ -19,13 +16,11 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     #region Variables
 
-    [SerializeField] private GameScreen _gameScreen;
     [SerializeField] private bool _needAutoPlay;
 
     [SerializeField] private int _originalLives;
     
     private int _lives;
-    private ScreenManager _screenManager;
     private GameState _currentState = GameState.Playing;
 
     #endregion
@@ -35,6 +30,14 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     public bool NeedAutoPlay => _needAutoPlay;
     public int Lives => _lives;
+
+    #endregion
+
+
+    #region Events
+
+    public event Action<int> OnLivesChanged;
+    public event Action<string> OnScreenChanged;
 
     #endregion
 
@@ -50,7 +53,6 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     private void Start()
     {
-        _screenManager = FindObjectOfType<ScreenManager>();
         LevelManager.Instance.OnAllBlocksDestroyed += PerformGameWin;
         BallsHandler.Instance.OnAllBallsDestroyed += DecrementLives;
     }
@@ -77,7 +79,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     {
         _lives += life;
         CheckLose();
-        _gameScreen.SetLivesLabelText(_lives);
+        OnLivesChanged?.Invoke(_lives);
     }
 
     #endregion
@@ -89,7 +91,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     {
         _lives--;
         CheckLose();
-        _gameScreen.SetLivesLabelText(_lives);
+        OnLivesChanged?.Invoke(_lives);
     }
 
     private void CheckLose()
@@ -105,13 +107,14 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     {
         StopGame();
         ResetGame();
-        _screenManager.NextScreen(GameUIScreens.GameOverScreen);
+        OnScreenChanged?.Invoke(GameUIScreens.GameOverScreen);
     }
 
     private void PerformGameWin()
     {
         StopGame();
-        _screenManager.NextScreen(GameUIScreens.GameWinScreen);
+        ResetGame();
+        OnScreenChanged?.Invoke(GameUIScreens.GameWinScreen);
     }
 
     private void StopGame()

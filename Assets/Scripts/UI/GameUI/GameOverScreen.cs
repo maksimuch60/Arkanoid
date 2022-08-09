@@ -1,5 +1,4 @@
-﻿using System;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -37,10 +36,9 @@ class GameOverScreen : MonoBehaviour
 
     private void MenuButtonClicked()
     {
-        SceneLoader.Instance.LoadScene(SceneNames.StartScene);
         ResetPause();
         GameManager.Instance.ResetGame();
-        
+        SceneLoader.Instance.LoadScene(SceneNames.StartScene);
     }
 
     private void ResetPause()

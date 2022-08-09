@@ -1,14 +1,21 @@
 using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class PauseManager : SingletonMonoBehavior<PauseManager>
 {
     #region Variables
 
-    private ScreenManager _screenManager;
+    //private ScreenManager _screenManager;
 
     private bool _ultimatePause;
+
+    #endregion
+
+
+    #region Events
+
+    public event Action<string> OnScreenChanged;
+    public event Action OnPrevScreenChanged;
 
     #endregion
 
@@ -21,11 +28,6 @@ public class PauseManager : SingletonMonoBehavior<PauseManager>
 
 
     #region Unity lifecycle
-
-    private void Start()
-    {
-        _screenManager = FindObjectOfType<ScreenManager>();
-    }
 
     private void Update()
     {
@@ -65,12 +67,12 @@ public class PauseManager : SingletonMonoBehavior<PauseManager>
         if (IsPaused)
         {
             StopGame();
-            _screenManager.NextScreen(GameUIScreens.PauseScreen);
+            OnScreenChanged?.Invoke(GameUIScreens.PauseScreen);
         }
         else
         {
             ResumeGame();
-            _screenManager.PrevScreen();
+            OnPrevScreenChanged?.Invoke();
         }
 
         _ultimatePause = false;

@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class PauseScreen : MonoBehaviour
@@ -34,7 +33,6 @@ public class PauseScreen : MonoBehaviour
 
     private void MenuButtonClicked()
     {
-        
         GameManager.Instance.ResetGame();
         SceneLoader.Instance.LoadScene(SceneNames.StartScene);
     }

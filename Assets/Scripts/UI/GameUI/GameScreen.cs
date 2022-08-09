@@ -23,11 +23,13 @@ public class GameScreen : MonoBehaviour
     private void Start()
     {
         ScoreManager.Instance.OnScoreChanged += SetScoreLabelText;
+        GameManager.Instance.OnLivesChanged += SetLivesLabelText;
     }
 
     private void OnDestroy()
     {
         ScoreManager.Instance.OnScoreChanged -= SetScoreLabelText;
+        GameManager.Instance.OnLivesChanged -= SetLivesLabelText;
     }
 
     #endregion
@@ -39,7 +41,7 @@ public class GameScreen : MonoBehaviour
         _scoreLabel.text = score.ToString();
     }
 
-    public void SetLivesLabelText(int lives)
+    private void SetLivesLabelText(int lives)
     {
         string text = String.Empty;
         for (int i = 0; i < lives; i++)
