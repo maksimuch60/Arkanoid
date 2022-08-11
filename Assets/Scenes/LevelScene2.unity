@@ -2766,7 +2766,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e637be2e2859f34f927a47fb91e5129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameScreen: {fileID: 862082722}
   _needAutoPlay: 0
   _originalLives: 3
 --- !u!4 &684483499
@@ -5446,10 +5445,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1275911758}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b445aa4600db49a189d345dee22f2d37, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e572f8019f74583994e2d8df67a1bdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _menuButton: {fileID: 1235331947}
+  _nextLevelButton: {fileID: 1235331947}
   _scoreLabel: {fileID: 254564290}
 --- !u!1 &1279293371
 GameObject:

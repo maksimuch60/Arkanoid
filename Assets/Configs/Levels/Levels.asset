@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdede05c9e94455498471c75ca7f9a84, type: 3}
   m_Name: Levels
   m_EditorClassIdentifier: 
-  LevelSprites:
-  - {fileID: 21300000, guid: 0720eb86f54d2db46917bb610a7aae2c, type: 3}
-  - {fileID: 21300000, guid: bc3f33c0e7255da43a04ae5b88e4f652, type: 3}
+  LevelArray:
+  - LevelName: LevelScene1
+    LevelSprite: {fileID: 21300000, guid: 0720eb86f54d2db46917bb610a7aae2c, type: 3}
+  - LevelName: LevelScene2
+    LevelSprite: {fileID: 21300000, guid: bc3f33c0e7255da43a04ae5b88e4f652, type: 3}
+  - LevelName: LevelScene3
+    LevelSprite: {fileID: 21300000, guid: 76cc81fc7a9340e49b818e5c20901747, type: 3}
+  - LevelName: LevelScene4
+    LevelSprite: {fileID: 21300000, guid: c70a04528e25e534c998c9a8bb4258cf, type: 3}
+  CurrentLevelIndex: 2

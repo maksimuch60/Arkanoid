@@ -73,6 +73,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         ResetLives();
         ResetScore();
         ResetPause();
+        LevelManager.Instance.ResetLevelManager();
         BallsHandler.Instance.ResetBallHandler();
     }
 

@@ -1,6 +1,5 @@
 ﻿using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameWinScreen : MonoBehaviour
@@ -33,40 +32,12 @@ public class GameWinScreen : MonoBehaviour
     private void NextLevelButtonClicked()
     {
         PauseManager.Instance.ResumeGame();
-        SceneLoader.Instance.LoadScene(NextSceneName());
+        BallsHandler.Instance.ResetBallHandler();
+        SceneLoader.Instance.LoadNextScene();
     }
-
-    private string NextSceneName()
-    {
-        int currentSceneIndex = -1;
-        string currentSceneName = SceneManager.GetActiveScene().name;
-        Log(currentSceneName);
-        for (int i = 0; i < SceneNames.LevelScene.Count; i++)
-        {
-            if (currentSceneName.Equals(SceneNames.LevelScene[i]))
-            {
-                currentSceneIndex = i;
-            }
-        }
-
-        Log(SceneNames.LevelScene[currentSceneIndex]);
-        if (currentSceneIndex == SceneNames.LevelScene.Count - 1)
-        {
-            GameManager.Instance.ResetGame();
-            return SceneNames.StartScene;
-        }
-
-        return SceneNames.LevelScene[currentSceneIndex];
-    }
-
     private void SetScoreText()
     {
         _scoreLabel.text = ScoreManager.Instance.Score.ToString();
-    }
-
-    private void Log(string log)
-    {
-        Debug.Log(log);
     }
 
     #endregion

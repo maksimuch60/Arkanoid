@@ -49,7 +49,7 @@ public class SelectLevelScreen : MonoBehaviour
 
     private void SetSprite(int index)
     {
-        _levelSprite.sprite = _levels.LevelSprites[index];
+        _levelSprite.sprite = _levels.LevelArray[index].LevelSprite;
         SetLevelNumberText(_currentLevelIndex);
     }
 
@@ -83,7 +83,8 @@ public class SelectLevelScreen : MonoBehaviour
     private void PlayButtonClicked()
     {
         GameManager.Instance.ResetGame();
-        SceneLoader.Instance.LoadScene(SceneNames.LevelScene[_currentLevelIndex]);
+        _levels.CurrentLevelIndex = _currentLevelIndex;
+        SceneLoader.Instance.LoadScene(_levels.LevelArray[_currentLevelIndex].LevelName);
     }
 
     private void NextButtonClicked()
@@ -95,12 +96,12 @@ public class SelectLevelScreen : MonoBehaviour
     {
         _prevButton.interactable = true;
         
-        if (_currentLevelIndex < _levels.LevelSprites.Length)
+        if (_currentLevelIndex < _levels.LevelArray.Length)
         {
             _currentLevelIndex++;
         }
 
-        if (_currentLevelIndex == _levels.LevelSprites.Length - 1)
+        if (_currentLevelIndex == _levels.LevelArray.Length - 1)
         {
             _nextButton.interactable = false;
         }

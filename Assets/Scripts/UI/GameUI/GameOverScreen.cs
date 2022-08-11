@@ -31,6 +31,7 @@ class GameOverScreen : MonoBehaviour
 
     private void MenuButtonClicked()
     {
+        LevelManager.Instance.SetHandExit();
         SceneLoader.Instance.LoadScene(SceneNames.StartScene);
     }
 

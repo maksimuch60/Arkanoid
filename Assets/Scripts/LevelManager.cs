@@ -5,6 +5,7 @@ public class LevelManager : SingletonMonoBehavior<LevelManager>
     #region Variables
 
     private int _blockCount;
+    private bool _isHandEXit;
 
     #endregion
 
@@ -34,6 +35,21 @@ public class LevelManager : SingletonMonoBehavior<LevelManager>
     #endregion
 
 
+    #region Public methods
+
+    public void ResetLevelManager()
+    {
+        _isHandEXit = false;
+    }
+
+    public void SetHandExit()
+    {
+        _isHandEXit = true;
+    }
+
+    #endregion
+
+
     #region Private methods
 
     private void BlockCreate()
@@ -45,7 +61,7 @@ public class LevelManager : SingletonMonoBehavior<LevelManager>
     {
         _blockCount--;
 
-        if (_blockCount == 0)
+        if (_blockCount == 0 && !_isHandEXit)
         {
             OnAllBlocksDestroyed?.Invoke();
         }
