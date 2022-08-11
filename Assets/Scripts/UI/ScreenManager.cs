@@ -17,7 +17,6 @@ public class ScreenManager : MonoBehaviour
 
     private void Awake()
     {
-        _screenHierarchy.Clear();
         _screenHierarchy.Push(_screens.First());
         SetActive(true);
     }
@@ -27,11 +26,6 @@ public class ScreenManager : MonoBehaviour
         GameManager.Instance.OnScreenChanged += NextScreen;
         PauseManager.Instance.OnScreenChanged += NextScreen;
         PauseManager.Instance.OnPrevScreenChanged += PrevScreen;
-    }
-
-    private void OnEnable()
-    {
-        _screenHierarchy.Clear();
     }
 
     private void OnDestroy()
