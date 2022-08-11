@@ -72,6 +72,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     {
         ResetLives();
         ResetScore();
+        ResetPause();
         BallsHandler.Instance.ResetBallHandler();
     }
 
@@ -106,14 +107,12 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     private void PerformEndGame()
     {
         StopGame();
-        ResetGame();
         OnScreenChanged?.Invoke(GameUIScreens.GameOverScreen);
     }
 
     private void PerformGameWin()
     {
         StopGame();
-        ResetGame();
         OnScreenChanged?.Invoke(GameUIScreens.GameWinScreen);
     }
 
@@ -125,6 +124,11 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     private void ResetLives()
     {
         _lives = _originalLives;
+    }
+
+    private void ResetPause()
+    {
+        PauseManager.Instance.ResumeGame();
     }
 
     private void ResetScore()

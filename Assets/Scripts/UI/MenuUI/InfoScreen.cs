@@ -18,17 +18,9 @@ public class InfoScreen : MonoBehaviour
 
     private void Awake()
     {
-        SetDescriptionText();
-    }
-
-    private void OnEnable()
-    {
+        
         _backButton.onClick.AddListener(BackButtonClicked);
-    }
-
-    private void OnDisable()
-    {
-        _backButton.onClick.RemoveListener(BackButtonClicked);
+        SetDescriptionText();
     }
 
     #endregion

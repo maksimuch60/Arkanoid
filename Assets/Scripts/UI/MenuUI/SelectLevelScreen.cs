@@ -34,20 +34,12 @@ public class SelectLevelScreen : MonoBehaviour
         SetSprite(_currentLevelIndex);
     }
 
-    private void OnEnable()
+    private void Awake()
     {
         _prevButton.onClick.AddListener(PrevButtonClicked);
         _playButton.onClick.AddListener(PlayButtonClicked);
         _nextButton.onClick.AddListener(NextButtonClicked);
         _backButton.onClick.AddListener(BackButtonClicked);
-    }
-
-    private void OnDisable()
-    {
-        _prevButton.onClick.RemoveListener(PrevButtonClicked);
-        _playButton.onClick.RemoveListener(PlayButtonClicked);
-        _nextButton.onClick.RemoveListener(NextButtonClicked);
-        _backButton.onClick.RemoveListener(BackButtonClicked);
     }
 
     #endregion
@@ -90,15 +82,16 @@ public class SelectLevelScreen : MonoBehaviour
 
     private void PlayButtonClicked()
     {
+        GameManager.Instance.ResetGame();
         SceneLoader.Instance.LoadScene(SceneNames.LevelScene[_currentLevelIndex]);
     }
 
     private void NextButtonClicked()
     {
-        SetSprite(NextLevelIndex());
+        SetSprite(NextSpriteIndex());
     }
 
-    private int NextLevelIndex()
+    private int NextSpriteIndex()
     {
         _prevButton.interactable = true;
         

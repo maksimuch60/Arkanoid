@@ -16,20 +16,14 @@ public class GameScreen : MonoBehaviour
 
     private void Awake()
     {
-        SetScoreLabelText(ScoreManager.Instance.Score);
-        SetLivesLabelText(GameManager.Instance.Lives);
-    }
-
-    private void Start()
-    {
         ScoreManager.Instance.OnScoreChanged += SetScoreLabelText;
         GameManager.Instance.OnLivesChanged += SetLivesLabelText;
     }
 
-    private void OnDestroy()
+    private void Start()
     {
-        ScoreManager.Instance.OnScoreChanged -= SetScoreLabelText;
-        GameManager.Instance.OnLivesChanged -= SetLivesLabelText;
+        SetScoreLabelText(ScoreManager.Instance.Score);
+        SetLivesLabelText(GameManager.Instance.Lives);
     }
 
     #endregion

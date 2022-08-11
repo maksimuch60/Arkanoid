@@ -14,14 +14,9 @@ class GameOverScreen : MonoBehaviour
 
     #region Unity lifecycle
 
-    private void OnEnable()
+    private void Awake()
     {
         _menuButton.onClick.AddListener(MenuButtonClicked);
-    }
-
-    private void OnDisable()
-    {
-        _menuButton.onClick.RemoveListener(MenuButtonClicked);
     }
 
     private void Start()
@@ -36,14 +31,7 @@ class GameOverScreen : MonoBehaviour
 
     private void MenuButtonClicked()
     {
-        ResetPause();
-        GameManager.Instance.ResetGame();
         SceneLoader.Instance.LoadScene(SceneNames.StartScene);
-    }
-
-    private void ResetPause()
-    {
-        PauseManager.Instance.ResumeGame();
     }
 
     private void SetScoreText()

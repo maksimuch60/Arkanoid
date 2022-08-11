@@ -15,14 +15,9 @@ public class GameWinScreen : MonoBehaviour
 
     #region Unity lifecycle
 
-    private void OnEnable()
+    private void Awake()
     {
         _nextLevelButton.onClick.AddListener(NextLevelButtonClicked);
-    }
-
-    private void OnDisable()
-    {
-        _nextLevelButton.onClick.RemoveListener(NextLevelButtonClicked);
     }
 
     private void Start()

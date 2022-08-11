@@ -14,16 +14,10 @@ public class PauseScreen : MonoBehaviour
 
     #region Unity lifecycle
 
-    private void OnEnable()
+    private void Awake()
     {
         _goOnButton.onClick.AddListener(GoOnButtonClicked);
         _menuButton.onClick.AddListener(MenuButtonClicked);
-    }
-
-    private void OnDisable()
-    {
-        _goOnButton.onClick.RemoveListener(GoOnButtonClicked);
-        _menuButton.onClick.RemoveListener(MenuButtonClicked);
     }
 
     #endregion
@@ -33,7 +27,6 @@ public class PauseScreen : MonoBehaviour
 
     private void MenuButtonClicked()
     {
-        GameManager.Instance.ResetGame();
         SceneLoader.Instance.LoadScene(SceneNames.StartScene);
     }
 

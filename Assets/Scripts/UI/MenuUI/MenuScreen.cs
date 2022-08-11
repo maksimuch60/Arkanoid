@@ -15,18 +15,11 @@ public class MenuScreen : MonoBehaviour
 
     #region Unity lifecycle
 
-    private void OnEnable()
+    private void Awake()
     {
         _playButton.onClick.AddListener(PlayButtonClicked);
         _infoButton.onClick.AddListener(InfoButtonClicked);
         _exitButton.onClick.AddListener(ExitButtonClicked);
-    }
-
-    private void OnDisable()
-    {
-        _playButton.onClick.RemoveListener(PlayButtonClicked);
-        _infoButton.onClick.RemoveListener(InfoButtonClicked);
-        _exitButton.onClick.RemoveListener(ExitButtonClicked);
     }
 
     #endregion
