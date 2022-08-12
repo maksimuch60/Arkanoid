@@ -21,4 +21,12 @@ MonoBehaviour:
     LevelSprite: {fileID: 21300000, guid: 76cc81fc7a9340e49b818e5c20901747, type: 3}
   - LevelName: LevelScene4
     LevelSprite: {fileID: 21300000, guid: c70a04528e25e534c998c9a8bb4258cf, type: 3}
-  CurrentLevelIndex: 2
+  - LevelName: LevelScene5
+    LevelSprite: {fileID: 21300000, guid: a8552f5adbbac4e41bb61be1f2e49ca9, type: 3}
+  - LevelName: LevelScene6
+    LevelSprite: {fileID: 21300000, guid: 632d0d793cfc2d946a91dda7c6ea1ebb, type: 3}
+  - LevelName: LevelScene7
+    LevelSprite: {fileID: 21300000, guid: 56dd1affa1c67e742b7c44c1133af0d4, type: 3}
+  - LevelName: LevelScene8
+    LevelSprite: {fileID: 21300000, guid: b2b29877a824c5d4f86ba897bcc77fc8, type: 3}
+  CurrentLevelIndex: 7
