@@ -44,13 +44,7 @@ class ExplosiveBlock : Block
 
     private void Explode()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _explodeRadius, _layerMask);
-        foreach (Collider2D collider in colliders)
-        {
-            Block blockToExplode = collider.gameObject.GetComponent<Block>();
-            blockToExplode.ApplyDamage();
-        }
-        
+        ExplosionAffect.PerformExplode(transform.position, _explodeRadius, _layerMask);
     }
 
     #endregion

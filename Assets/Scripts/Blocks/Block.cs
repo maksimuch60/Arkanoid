@@ -51,7 +51,7 @@ public class Block : MonoBehaviour
     private void OnDestroy()
     {
         OnDestroyed?.Invoke();
-    }
+     }
 
     private void OnValidate()
     {

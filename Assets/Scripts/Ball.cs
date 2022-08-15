@@ -118,12 +118,7 @@ public class Ball : MonoBehaviour
         
         if (_isFireBallActive && col.gameObject.CompareTag(Tags.Block))
         {
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _explodeRadius, _layerMask);
-            foreach (Collider2D collider1 in colliders)
-            {
-                Block block = collider1.GetComponent<Block>();
-                block.ApplyDamage();
-            }
+            ExplosionAffect.PerformExplode(transform.position, _explodeRadius, _layerMask);
         }
     }
 
