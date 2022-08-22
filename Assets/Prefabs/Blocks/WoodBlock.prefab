@@ -75,6 +75,7 @@ MonoBehaviour:
     Chance: 0.1
   _pickUpSpawnChance: 0.754
   _touchSound: {fileID: 8300000, guid: d8d04c6f80a1140db85ede568dab1f51, type: 3}
+  _vfxPrefab: {fileID: 100004, guid: f95ff734540a0d749be6571b6cb5b37f, type: 3}
 --- !u!212 &5892299802819358980
 SpriteRenderer:
   m_ObjectHideFlags: 0

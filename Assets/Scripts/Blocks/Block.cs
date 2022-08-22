@@ -20,10 +20,12 @@ public class Block : MonoBehaviour
     [SerializeField] private List<PickUpInfo> _pickUps;
     [Range(0f, 1f)]
     [SerializeField] private float _pickUpSpawnChance;
-    
+
     [Header("Audio")]
     [SerializeField] private AudioClip _touchSound;
-    
+
+    [Header("Particles")]
+    [SerializeField] private GameObject _vfxPrefab;
 
     #endregion
 
@@ -51,7 +53,7 @@ public class Block : MonoBehaviour
     private void OnDestroy()
     {
         OnDestroyed?.Invoke();
-     }
+    }
 
     private void OnValidate()
     {
@@ -74,7 +76,7 @@ public class Block : MonoBehaviour
     protected internal virtual void ApplyDamage()
     {
         PlaySound();
-        
+
         DecrementHp();
         CheckDestruction();
         ChangeSprite();
@@ -106,7 +108,18 @@ public class Block : MonoBehaviour
 
         ScoreManager.Instance.ChangeScore(_blockScore);
         SpawnPickUp();
+        SpawnVfx();
         DestroyBlock();
+    }
+
+    private void SpawnVfx()
+    {
+        if (_vfxPrefab == null)
+        {
+            return;
+        }
+
+        Instantiate(_vfxPrefab, transform.position, Quaternion.identity);
     }
 
     protected virtual void DestroyBlock()
@@ -120,7 +133,7 @@ public class Block : MonoBehaviour
         {
             return;
         }
-        
+
         SpawnRandomPickUp();
     }
 
@@ -138,7 +151,7 @@ public class Block : MonoBehaviour
         {
             sum += pickUp.Chance;
         }
-        
+
         float pickUpChance = Random.Range(0f, sum);
         foreach (PickUpInfo pickup in _pickUps)
         {

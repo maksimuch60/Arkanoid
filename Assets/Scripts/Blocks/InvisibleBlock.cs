@@ -6,6 +6,8 @@ public class InvisibleBlock : Block
 
     [Header(nameof(InvisibleBlock))]
     [SerializeField] private AudioClip _visibleSound;
+    [SerializeField] private GameObject _vfxPrefabVisibleEffect;
+    
     
     
     private bool _isVisible;
@@ -29,6 +31,7 @@ public class InvisibleBlock : Block
         if (!_isVisible)
         {
             AudioPlayer.Instance.PlaySound(_visibleSound);
+            Instantiate(_vfxPrefabVisibleEffect, transform.position, Quaternion.identity);
             _spriteRenderer.enabled = true;
             _isVisible = true;
         }
